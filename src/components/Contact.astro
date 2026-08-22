@@ -34,49 +34,48 @@ const contactLinks = [
 ];
 ---
 
-<section id="contact" class="py-20 lg:py-28">
+<section id="contact" class="py-20 lg:py-28 relative">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-      <p class="reveal text-sm font-medium uppercase tracking-wider mb-2" style="color: var(--accent);">
+    <div class="text-center mb-14">
+      <p class="reveal text-xs sm:text-sm font-bold uppercase tracking-wider mb-2" style="color: var(--accent);">
         Let's Connect
       </p>
       <h2 class="reveal reveal-delay-1 section-heading" style="color: var(--text);">
         Get In Touch
       </h2>
       <div class="reveal reveal-delay-1 section-line mx-auto"></div>
-      <p class="reveal reveal-delay-2 max-w-lg mx-auto text-base" style="color: var(--text-muted);">
-        Interested in collaborating or have a question? Feel free to reach out through any
-        of the channels below or send me a message directly.
+      <p class="reveal reveal-delay-2 max-w-lg mx-auto text-sm sm:text-base" style="color: var(--text-muted);">
+        Interested in discussing data analytics opportunities, collaboration, or have a question? Reach out anytime.
       </p>
     </div>
 
-    <div class="grid lg:grid-cols-2 gap-10">
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
       <!-- Contact Links -->
-      <div class="reveal reveal-delay-2 space-y-4">
+      <div class="reveal-left space-y-4">
         {
           contactLinks.map((link) => (
             <a
               href={link.href}
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
-              class="contact-btn card flex items-center gap-4 group cursor-pointer"
+              class="contact-btn card rounded-2xl flex items-center gap-4 group cursor-pointer p-4 transition-all duration-300 hover:scale-[1.02]"
               data-copyable={link.copyable ? link.value : undefined}
             >
               <div
-                class="flex items-center justify-center w-12 h-12 rounded-lg shrink-0 transition-colors duration-200"
-                style="background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent);"
+                class="flex items-center justify-center w-12 h-12 rounded-2xl shrink-0 transition-transform duration-300 group-hover:scale-110"
+                style="background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent);"
               >
                 <Fragment set:html={link.icon} />
               </div>
               <div class="flex-1 min-w-0">
-                <p class="text-sm font-semibold" style="color: var(--text);">{link.label}</p>
-                <p class="text-sm truncate" style="color: var(--text-muted);">{link.value}</p>
+                <p class="text-xs sm:text-sm font-bold" style="color: var(--text);">{link.label}</p>
+                <p class="text-xs sm:text-sm truncate font-medium" style="color: var(--text-muted);">{link.value}</p>
               </div>
               {link.copyable ? (
                 <button
                   type="button"
-                  class="copy-btn shrink-0 p-2 rounded-lg border transition-all duration-200"
-                  style="border-color: var(--border); color: var(--text-muted);"
+                  class="copy-btn shrink-0 p-2.5 rounded-xl border transition-all duration-200"
+                  style="border-color: var(--border); color: var(--text-muted); background: var(--bg);"
                   data-copy={link.value}
                   aria-label={`Copy ${link.value}`}
                   onclick="event.preventDefault(); event.stopPropagation();"
@@ -95,10 +94,10 @@ const contactLinks = [
       </div>
 
       <!-- Contact Form -->
-      <div class="reveal reveal-delay-3">
-        <div class="card">
-          <h3 class="font-heading font-semibold text-lg mb-4" style="color: var(--text);">
-            Send a Message
+      <div class="reveal-right">
+        <div class="card rounded-3xl p-6 sm:p-8 border shadow-lg" style="border-color: var(--border);">
+          <h3 class="font-heading font-bold text-xl mb-4" style="color: var(--text);">
+            Send a Direct Message
           </h3>
           <ContactForm client:visible />
         </div>

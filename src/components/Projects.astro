@@ -2,33 +2,42 @@
 import { projects } from "../data/projects";
 ---
 
-<section id="projects" class="py-20 lg:py-28">
+<section id="projects" class="py-20 lg:py-28 relative">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-      <p class="reveal text-sm font-medium uppercase tracking-wider mb-2" style="color: var(--accent);">
-        Case Studies
+    <div class="text-center mb-14">
+      <p class="reveal text-xs sm:text-sm font-bold uppercase tracking-wider mb-2" style="color: var(--accent);">
+        Featured Work
       </p>
       <h2 class="reveal reveal-delay-1 section-heading" style="color: var(--text);">
-        Projects
+        Data Analytics Case Studies
       </h2>
       <div class="reveal reveal-delay-1 section-line mx-auto"></div>
+      <p class="reveal reveal-delay-2 max-w-xl mx-auto text-sm sm:text-base" style="color: var(--text-muted);">
+        Real-world business intelligence dashboards demonstrating full analytics lifecycles from data preparation to executive strategic insights.
+      </p>
     </div>
 
     {
-      projects.map((project) => (
-        <div class="reveal reveal-delay-2 card p-0 overflow-hidden mb-8">
-          <!-- Project Header -->
-          <div class="p-6 sm:p-8 pb-0">
-            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
-              <div>
-                <h3 class="font-heading text-xl sm:text-2xl font-bold mb-2" style="color: var(--text);">
+      projects.map((project, pIdx) => (
+        <div class="reveal reveal-delay-2 card rounded-3xl p-0 overflow-hidden mb-12 border shadow-lg" style="border-color: var(--border);">
+          <!-- Project Header & Meta -->
+          <div class="p-6 sm:p-8 lg:p-10 border-b" style="border-color: var(--border);">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+              <div class="max-w-3xl">
+                <span
+                  class="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full mb-3"
+                  style="background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);"
+                >
+                  {project.category}
+                </span>
+                <h3 class="font-heading text-2xl sm:text-3xl font-extrabold tracking-tight mb-3" style="color: var(--text);">
                   {project.title}
                 </h3>
                 <div class="flex flex-wrap gap-2">
                   {project.tools.map((tool) => (
                     <span
-                      class="px-2.5 py-1 text-xs font-medium rounded-md"
-                      style="background: color-mix(in srgb, var(--accent-secondary) 15%, transparent); color: var(--accent-secondary); border: 1px solid color-mix(in srgb, var(--accent-secondary) 25%, transparent);"
+                      class="px-3 py-1 text-xs font-semibold rounded-full"
+                      style="background: color-mix(in srgb, var(--accent-secondary) 10%, var(--bg)); color: var(--accent-secondary); border: 1px solid color-mix(in srgb, var(--accent-secondary) 20%, transparent);"
                     >
                       {tool}
                     </span>
@@ -36,16 +45,16 @@ import { projects } from "../data/projects";
                 </div>
               </div>
 
-              <div class="flex gap-3 shrink-0">
+              <div class="flex flex-wrap gap-3 shrink-0">
                 {project.liveUrl && (
                   <a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="btn-primary text-sm py-2 px-4"
+                    class="btn-primary text-xs sm:text-sm py-2.5 px-5 shadow-md"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                    Live Dashboard
+                    Live Tableau Dashboard
                   </a>
                 )}
                 {project.githubUrl && (
@@ -53,63 +62,69 @@ import { projects } from "../data/projects";
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="btn-secondary text-sm py-2 px-4"
+                    class="btn-secondary text-xs sm:text-sm py-2.5 px-5"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-                    GitHub
+                    GitHub Repo
                   </a>
                 )}
               </div>
             </div>
+          </div>
 
-            <!-- Case Study Grid: Problem → Process → Insight → Impact -->
-            <div class="grid sm:grid-cols-2 gap-4 mb-6">
+          <!-- Structured Case Study 4-Pillars -->
+          <div class="p-6 sm:p-8 lg:p-10 pb-6">
+            <div class="grid md:grid-cols-2 gap-5">
+              <!-- Problem -->
               <div
-                class="p-4 rounded-lg"
-                style="background: color-mix(in srgb, var(--accent) 5%, var(--bg));"
+                class="p-5 rounded-2xl border transition-all duration-300 hover:scale-[1.01]"
+                style="background: color-mix(in srgb, var(--accent) 4%, var(--bg)); border-color: color-mix(in srgb, var(--accent) 15%, transparent);"
               >
-                <h4 class="flex items-center gap-2 text-sm font-semibold mb-2" style="color: var(--accent);">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
-                  Problem
+                <h4 class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-2.5" style="color: var(--accent);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                  1. Business Context & Problem
                 </h4>
                 <p class="text-sm leading-relaxed" style="color: var(--text-muted);">
                   {project.problem}
                 </p>
               </div>
 
+              <!-- Process -->
               <div
-                class="p-4 rounded-lg"
-                style="background: color-mix(in srgb, var(--accent-secondary) 5%, var(--bg));"
+                class="p-5 rounded-2xl border transition-all duration-300 hover:scale-[1.01]"
+                style="background: color-mix(in srgb, var(--accent-secondary) 4%, var(--bg)); border-color: color-mix(in srgb, var(--accent-secondary) 15%, transparent);"
               >
-                <h4 class="flex items-center gap-2 text-sm font-semibold mb-2" style="color: var(--accent-secondary);">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>
-                  Process
+                <h4 class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-2.5" style="color: var(--accent-secondary);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>
+                  2. Methodology & Process
                 </h4>
                 <p class="text-sm leading-relaxed" style="color: var(--text-muted);">
                   {project.process}
                 </p>
               </div>
 
+              <!-- Insight -->
               <div
-                class="p-4 rounded-lg"
-                style="background: color-mix(in srgb, var(--accent) 5%, var(--bg));"
+                class="p-5 rounded-2xl border transition-all duration-300 hover:scale-[1.01]"
+                style="background: color-mix(in srgb, var(--accent) 4%, var(--bg)); border-color: color-mix(in srgb, var(--accent) 15%, transparent);"
               >
-                <h4 class="flex items-center gap-2 text-sm font-semibold mb-2" style="color: var(--accent);">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-                  Insight
+                <h4 class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-2.5" style="color: var(--accent);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                  3. Key Data Insights Found
                 </h4>
                 <p class="text-sm leading-relaxed" style="color: var(--text-muted);">
                   {project.insight}
                 </p>
               </div>
 
+              <!-- Impact -->
               <div
-                class="p-4 rounded-lg"
-                style="background: color-mix(in srgb, var(--accent-secondary) 5%, var(--bg));"
+                class="p-5 rounded-2xl border transition-all duration-300 hover:scale-[1.01]"
+                style="background: color-mix(in srgb, var(--accent-secondary) 4%, var(--bg)); border-color: color-mix(in srgb, var(--accent-secondary) 15%, transparent);"
               >
-                <h4 class="flex items-center gap-2 text-sm font-semibold mb-2" style="color: var(--accent-secondary);">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v12"/><path d="M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M15 6a9 9 0 0 0-9 9"/></svg>
-                  Impact
+                <h4 class="flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-2.5" style="color: var(--accent-secondary);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v12"/><path d="M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M15 6a9 9 0 0 0-9 9"/></svg>
+                  4. Business Impact & Decisions
                 </h4>
                 <p class="text-sm leading-relaxed" style="color: var(--text-muted);">
                   {project.impact}
@@ -118,34 +133,117 @@ import { projects } from "../data/projects";
             </div>
           </div>
 
-          <!-- Dashboard Screenshots Gallery -->
-          <div class="px-6 sm:px-8 pb-6 sm:pb-8">
-            <h4 class="text-sm font-semibold mb-3" style="color: var(--text-muted);">
-              Dashboard Preview
-            </h4>
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-              {project.images.map((img, i) => (
-                <a
-                  href={img}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="group/img relative overflow-hidden rounded-lg border transition-all duration-300"
-                  style="border-color: var(--border);"
-                >
-                  <img
-                    src={img}
-                    alt={`${project.title} - Slide ${i + 1}`}
-                    class="w-full h-24 sm:h-28 object-cover object-top transition-transform duration-500 group-hover/img:scale-110"
-                    loading="lazy"
-                  />
-                  <div
-                    class="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity duration-300"
-                    style="background: rgba(0,0,0,0.5);"
+          <!-- Interactive Dashboard Slide Deck (Next/Previous Controls & Animated Viewer) -->
+          <div class="p-6 sm:p-8 lg:p-10 pt-2">
+            <div class="p-6 rounded-2xl border bg-slate-950/20" style="border-color: var(--border);">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+                <div>
+                  <h4 class="font-heading font-bold text-base sm:text-lg" style="color: var(--text);">
+                    Interactive Slide Viewer & Dashboard Breakdown
+                  </h4>
+                  <p class="text-xs sm:text-sm" style="color: var(--text-muted);">
+                    Explore each page of the multi-page Tableau dashboard with interactive next / previous navigation.
+                  </p>
+                </div>
+
+                <!-- Next / Prev Control Buttons -->
+                <div class="flex items-center gap-2 self-end sm:self-center shrink-0">
+                  <button
+                    type="button"
+                    class="prev-slide-btn flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border text-xs font-bold transition-all duration-200 hover:border-sky-500 hover:scale-105"
+                    style="border-color: var(--border); color: var(--text); background: var(--bg-surface);"
+                    data-project={pIdx}
+                    aria-label="Previous Slide"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                  </div>
-                </a>
-              ))}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    Previous
+                  </button>
+                  <span
+                    class="slide-counter text-xs font-extrabold px-3 py-1.5 rounded-full"
+                    style="background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent);"
+                    id={`slide-counter-${pIdx}`}
+                  >
+                    1 / {project.slides.length}
+                  </span>
+                  <button
+                    type="button"
+                    class="next-slide-btn flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border text-xs font-bold transition-all duration-200 hover:border-sky-500 hover:scale-105"
+                    style="border-color: var(--border); color: var(--text); background: var(--bg-surface);"
+                    data-project={pIdx}
+                    aria-label="Next Slide"
+                  >
+                    Next
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Main Slide Screen Display -->
+              <div class="relative overflow-hidden rounded-2xl border aspect-[16/9] bg-slate-950/60 group shadow-inner" style="border-color: var(--border);">
+                {
+                  project.slides.map((slide, sIdx) => (
+                    <div
+                      class={`slide-item absolute inset-0 transition-all duration-500 flex flex-col justify-between ${sIdx === 0 ? "opacity-100 scale-100 z-10 pointer-events-auto" : "opacity-0 scale-95 z-0 pointer-events-none"}`}
+                      data-project={pIdx}
+                      data-index={sIdx}
+                    >
+                      <img
+                        src={slide.image}
+                        alt={`${project.title} - ${slide.title}`}
+                        class="w-full h-full object-cover object-top cursor-pointer"
+                        loading={sIdx === 0 ? "eager" : "lazy"}
+                        onclick={`window.open('${slide.image}', '_blank')`}
+                      />
+                      <!-- Caption Overlay (High Contrast Solid Glass) -->
+                      <div class="absolute bottom-0 inset-x-0 p-4 sm:p-5 border-t border-slate-700/60 bg-slate-950/90 backdrop-blur-md flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xl">
+                        <div class="pr-2">
+                          <p class="font-heading font-bold text-sm sm:text-base text-sky-400">
+                            Slide {sIdx + 1}: <span class="text-white">{slide.title}</span>
+                          </p>
+                          <p class="text-xs sm:text-sm text-slate-200 mt-1 leading-relaxed">
+                            {slide.description}
+                          </p>
+                        </div>
+                        <a
+                          href={slide.image}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-extrabold bg-sky-400 hover:bg-sky-300 text-slate-950 transition-all duration-200 shadow-md hover:scale-105"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                          View Full Image
+                        </a>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+
+              <!-- Thumbnail Nav Strip -->
+              <div class="grid grid-cols-5 gap-2 sm:gap-3 mt-4">
+                {
+                  project.slides.map((slide, sIdx) => (
+                    <button
+                      type="button"
+                      class={`thumb-btn relative overflow-hidden rounded-xl border transition-all duration-300 aspect-[16/10] ${sIdx === 0 ? "ring-2 ring-sky-400 border-transparent scale-105" : "opacity-60 hover:opacity-100"}`}
+                      style="border-color: var(--border);"
+                      data-project={pIdx}
+                      data-index={sIdx}
+                      aria-label={`Jump to slide ${sIdx + 1}`}
+                    >
+                      <img
+                        src={slide.image}
+                        alt={`Thumb ${sIdx + 1}`}
+                        class="w-full h-full object-cover object-top"
+                        loading="lazy"
+                      />
+                      <span class="absolute bottom-1 right-1 px-1.5 py-0.5 text-[10px] font-bold rounded bg-black/70 text-white">
+                        {sIdx + 1}
+                      </span>
+                    </button>
+                  ))
+                }
+              </div>
             </div>
           </div>
         </div>
@@ -153,3 +251,69 @@ import { projects } from "../data/projects";
     }
   </div>
 </section>
+
+<script is:inline>
+  (function () {
+    const projectCurrentIndex = {};
+
+    function updateSlide(projectIdx, newIdx) {
+      const slides = document.querySelectorAll(`.slide-item[data-project="${projectIdx}"]`);
+      const thumbs = document.querySelectorAll(`.thumb-btn[data-project="${projectIdx}"]`);
+      const counter = document.getElementById(`slide-counter-${projectIdx}`);
+      const total = slides.length;
+
+      if (newIdx < 0) newIdx = total - 1;
+      if (newIdx >= total) newIdx = 0;
+
+      projectCurrentIndex[projectIdx] = newIdx;
+
+      slides.forEach((slide, idx) => {
+        if (idx === newIdx) {
+          slide.classList.remove("opacity-0", "scale-95", "z-0", "pointer-events-none");
+          slide.classList.add("opacity-100", "scale-100", "z-10", "pointer-events-auto");
+        } else {
+          slide.classList.add("opacity-0", "scale-95", "z-0", "pointer-events-none");
+          slide.classList.remove("opacity-100", "scale-100", "z-10", "pointer-events-auto");
+        }
+      });
+
+      thumbs.forEach((thumb, idx) => {
+        if (idx === newIdx) {
+          thumb.classList.add("ring-2", "ring-sky-400", "border-transparent", "scale-105");
+          thumb.classList.remove("opacity-60");
+        } else {
+          thumb.classList.remove("ring-2", "ring-sky-400", "border-transparent", "scale-105");
+          thumb.classList.add("opacity-60");
+        }
+      });
+
+      if (counter) {
+        counter.textContent = `${newIdx + 1} / ${total}`;
+      }
+    }
+
+    document.querySelectorAll(".prev-slide-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const pIdx = parseInt(btn.getAttribute("data-project") || "0", 10);
+        const cur = projectCurrentIndex[pIdx] || 0;
+        updateSlide(pIdx, cur - 1);
+      });
+    });
+
+    document.querySelectorAll(".next-slide-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const pIdx = parseInt(btn.getAttribute("data-project") || "0", 10);
+        const cur = projectCurrentIndex[pIdx] || 0;
+        updateSlide(pIdx, cur + 1);
+      });
+    });
+
+    document.querySelectorAll(".thumb-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const pIdx = parseInt(btn.getAttribute("data-project") || "0", 10);
+        const sIdx = parseInt(btn.getAttribute("data-index") || "0", 10);
+        updateSlide(pIdx, sIdx);
+      });
+    });
+  })();
+</script>

@@ -2,68 +2,74 @@
 import { certifications } from "../data/certifications";
 ---
 
-<section id="certifications" class="py-20 lg:py-28">
+<section id="certifications" class="py-20 lg:py-28 relative">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-      <p class="reveal text-sm font-medium uppercase tracking-wider mb-2" style="color: var(--accent);">
-        Verified Credentials
+    <div class="text-center mb-14">
+      <p class="reveal text-xs sm:text-sm font-bold uppercase tracking-wider mb-2" style="color: var(--accent);">
+        Professional Credentials
       </p>
       <h2 class="reveal reveal-delay-1 section-heading" style="color: var(--text);">
-        Certifications
+        Certifications & Specializations
       </h2>
       <div class="reveal reveal-delay-1 section-line mx-auto"></div>
+      <p class="reveal reveal-delay-2 max-w-xl mx-auto text-sm sm:text-base" style="color: var(--text-muted);">
+        Verified professional credentials and specializations in Data Analytics & AI, with additional industry certifications currently in progress.
+      </p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {
         certifications.map((cert, idx) => (
-          <div class={`reveal reveal-delay-${Math.min(idx + 1, 5)} card group overflow-hidden`}>
-            {cert.image ? (
-              <div class="relative -mx-6 -mt-6 mb-4 overflow-hidden">
-                <img
-                  src={cert.image}
-                  alt={`${cert.name} certificate`}
-                  class="w-full h-44 object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-                {cert.courses && (
-                  <span
-                    class="absolute top-3 right-3 px-2.5 py-1 text-xs font-semibold rounded-md"
-                    style="background: var(--accent); color: #0B0F19;"
-                  >
-                    {cert.courses} Courses
-                  </span>
-                )}
-              </div>
-            ) : (
-              <div
-                class="relative -mx-6 -mt-6 mb-4 h-44 flex items-center justify-center"
-                style="background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 15%, transparent), color-mix(in srgb, var(--accent-secondary) 15%, transparent));"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent); opacity: 0.5;">
-                  <circle cx="12" cy="8" r="6" /><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
-                </svg>
-              </div>
-            )}
+          <div class={`reveal-scale reveal-delay-${idx + 1} card rounded-3xl group overflow-hidden p-0 flex flex-col justify-between transition-all duration-300 hover:border-sky-500/50 hover:shadow-2xl`}>
+            <div>
+              {cert.image && (
+                <div class="relative overflow-hidden aspect-[16/10] bg-slate-950/40">
+                  <img
+                    src={cert.image}
+                    alt={`${cert.name} certificate`}
+                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  {cert.courses && (
+                    <span
+                      class="absolute top-3.5 right-3.5 px-3 py-1 text-xs font-bold rounded-full shadow-lg"
+                      style="background: var(--accent); color: #0A0E17;"
+                    >
+                      {cert.courses} Specialized Courses
+                    </span>
+                  )}
+                </div>
+              )}
 
-            <h3 class="font-heading font-semibold text-base mb-1" style="color: var(--text);">
-              {cert.name}
-            </h3>
-            <p class="text-sm mb-3" style="color: var(--text-muted);">
-              {cert.issuer} · {cert.date}
-            </p>
+              <div class="p-6">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="w-2 h-2 rounded-full" style="background: var(--accent);"></span>
+                  <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--accent);">
+                    {cert.issuer}
+                  </span>
+                </div>
+                <h3 class="font-heading font-bold text-lg mb-2 leading-snug" style="color: var(--text);">
+                  {cert.name}
+                </h3>
+                <p class="text-xs sm:text-sm font-medium mb-4" style="color: var(--text-muted);">
+                  Completed: {cert.date}
+                </p>
+              </div>
+            </div>
 
             {cert.verifyUrl && (
-              <a
-                href={cert.verifyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 text-xs font-medium transition-colors duration-200"
-                style="color: var(--accent);"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                Verify Certificate
-              </a>
+              <div class="p-6 pt-0">
+                <a
+                  href={cert.verifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl text-xs font-bold border transition-all duration-200 group-hover:border-sky-500/50"
+                  style="background: color-mix(in srgb, var(--accent) 8%, var(--bg-surface)); color: var(--accent); border-color: var(--border);"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  Verify Official Certificate
+                </a>
+              </div>
             )}
           </div>
         ))

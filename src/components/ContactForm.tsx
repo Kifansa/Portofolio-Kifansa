@@ -44,11 +44,12 @@ export default function ContactForm() {
     setStatus("loading");
 
     try {
+      const accessKey = (import.meta as any).env?.PUBLIC_WEB3FORMS_KEY || "YOUR_WEB3FORMS_ACCESS_KEY";
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_ACCESS_KEY", // Replace with actual key from web3forms.com
+          access_key: accessKey,
           ...formData,
           from_name: "Portfolio Contact Form",
         }),

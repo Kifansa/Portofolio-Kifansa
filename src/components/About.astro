@@ -1,59 +1,74 @@
 ---
-
 ---
 
-<section id="about" class="py-20 lg:py-28">
+<section id="about" class="py-20 lg:py-28 relative">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid md:grid-cols-5 gap-10 lg:gap-16 items-center">
-      <!-- Photo -->
-      <div class="md:col-span-2 reveal flex justify-center">
-        <div class="relative">
-          <!-- Accent border ring -->
+      <!-- Photo Container -->
+      <div class="md:col-span-2 reveal-left flex justify-center">
+        <div class="relative group">
+          <!-- Animated Accent Glow Background -->
           <div
-            class="absolute -inset-1 rounded-2xl opacity-60 blur-sm"
+            class="absolute -inset-2 rounded-3xl opacity-50 blur-lg transition-all duration-500 group-hover:opacity-75"
             style="background: linear-gradient(135deg, var(--accent), var(--accent-secondary));"
           ></div>
-          <img
-            src="/images/profile.png"
-            alt="Kifansa Naufal Fadhlurrohman — Data Analyst"
-            class="relative w-64 h-64 sm:w-72 sm:h-72 object-cover rounded-2xl"
-            style="border: 3px solid var(--bg-surface);"
-            loading="eager"
-          />
+          
+          <div class="relative p-2 rounded-3xl border shadow-xl transition-transform duration-500 group-hover:scale-[1.02]" style="background: var(--bg-surface); border-color: var(--border);">
+            <img
+              src="/images/profile.png"
+              alt="Kifansa Naufal Fadhlurrohman — Data Analyst"
+              class="w-64 h-64 sm:w-72 sm:h-72 object-cover rounded-2xl"
+              loading="eager"
+            />
+            <!-- Overlay badge -->
+            <div class="absolute bottom-4 left-4 right-4 py-2 px-3 rounded-xl glass border border-white/10 flex items-center justify-between text-xs font-semibold shadow-lg">
+              <span style="color: var(--text);">Telkom University</span>
+              <span class="px-2 py-0.5 rounded-full" style="background: var(--accent); color: #0A0E17;">GPA 3.86</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Text -->
-      <div class="md:col-span-3">
-        <p class="reveal text-sm font-medium uppercase tracking-wider mb-2" style="color: var(--accent);">
+      <!-- Text Content -->
+      <div class="md:col-span-3 reveal-right">
+        <p class="text-xs sm:text-sm font-bold uppercase tracking-wider mb-2" style="color: var(--accent);">
           About Me
         </p>
-        <h2 class="reveal reveal-delay-1 section-heading" style="color: var(--text);">
-          Passionate about uncovering stories hidden in data
+        <h2 class="section-heading" style="color: var(--text);">
+          Passionate about uncovering stories hidden in complex data
         </h2>
-        <div class="reveal reveal-delay-1 section-line"></div>
+        <div class="section-line"></div>
 
         <div class="space-y-4 text-base leading-relaxed" style="color: var(--text-muted);">
-          <p class="reveal reveal-delay-2">
-            I'm an <strong style="color: var(--text);">Information Systems</strong> student at
-            <strong style="color: var(--text);">Telkom University Surabaya</strong> with a strong
-            foundation in data analytics, machine learning, and tech-driven operations.
-            Maintaining a <strong style="color: var(--accent);">GPA of 3.89/4.00</strong>, I balance
-            academic excellence with intensive technical and leadership roles.
+          <p>
+            I am an <strong style="color: var(--text);">Information Systems</strong> undergraduate student at
+            <strong style="color: var(--text);">Telkom University Surabaya</strong> with a dedicated focus on
+            data analytics, statistical modeling, and business intelligence.
+            Maintaining a <strong style="color: var(--accent);">GPA of 3.86 / 4.00</strong>, I balance
+            rigorous academic performance with hands-on technical and leadership roles.
           </p>
-          <p class="reveal reveal-delay-3">
-            My journey in data started with a curiosity about how numbers can tell stories and
-            drive real business impact. Since then, I've earned multiple
-            <strong style="color: var(--text);">Google Professional Certificates</strong> in
-            Data Analysis and AI, and gained hands-on experience coaching students through
-            data mining lifecycles as a Teaching Assistant.
+          <p>
+            My analytics journey centers on transforming complex numbers into compelling stories that drive decisive business value.
+            I have achieved multiple <strong style="color: var(--text);">Google Professional Certifications</strong> in
+            Advanced Data Analytics and AI, and gained practical experience guiding students through end-to-end data mining lifecycles as a Teaching Assistant.
           </p>
-          <p class="reveal reveal-delay-4">
-            I thrive on transforming raw, messy datasets into clear, actionable insights — whether
-            it's building interactive dashboards, running predictive models, or presenting findings
-            that stakeholders can immediately act on. Currently seeking opportunities to bring
-            my analytical skills to a team where data drives decisions.
+          <p>
+            I specialize in wrangling unstructured datasets, building predictive analytics, and engineering intuitive Tableau dashboards that empower executive decision-making. Always enthusiastic about solving challenging data problems and bringing measurable impact to data-driven teams.
           </p>
+        </div>
+
+        <!-- Highlights tags -->
+        <div class="flex flex-wrap gap-2 pt-6">
+          {
+            ["Python & Pandas", "SQL & Database Querying", "Tableau BI", "Machine Learning", "Data Mining", "Statistical Inference"].map((item) => (
+              <span
+                class="px-3.5 py-1.5 text-xs font-semibold rounded-full border transition-all duration-200 hover:scale-105"
+                style="background: color-mix(in srgb, var(--accent) 8%, transparent); color: var(--accent); border-color: color-mix(in srgb, var(--accent) 25%, transparent);"
+              >
+                {item}
+              </span>
+            ))
+          }
         </div>
       </div>
     </div>

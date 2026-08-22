@@ -1,49 +1,62 @@
+export interface SkillItem {
+  name: string;
+  icon: string;
+}
+
 export interface SkillCategory {
   name: string;
-  skills: string[];
+  icon: string;
+  skills: SkillItem[];
 }
 
 export const skillCategories: SkillCategory[] = [
   {
-    name: "Data & Analytics",
+    name: "Data Analysis & ML",
+    icon: "database",
     skills: [
-      "Python",
-      "SQL / MySQL",
-      "Jupyter Notebook",
-      "Looker Studio",
-      "Data Mining",
-      "Data Cleaning",
-      "Statistics",
-      "Machine Learning",
+      { name: "Python", icon: "python" },
+      { name: "SQL (Postgres/MySQL)", icon: "sql" },
+      { name: "Pandas", icon: "pandas" },
+      { name: "NumPy", icon: "numpy" },
+      { name: "Scikit-Learn", icon: "scikit" },
+      { name: "Jupyter Notebook", icon: "jupyter" },
+      { name: "Exploratory Data Analysis", icon: "eda" },
+      { name: "Statistical Modeling", icon: "stats" },
     ],
   },
   {
-    name: "Visualization",
+    name: "BI & Visualization",
+    icon: "chart",
     skills: [
-      "Tableau",
-      "Looker Studio",
-      "Excel Charts",
-      "Data Storytelling",
+      { name: "Tableau (Public/Desktop)", icon: "tableau" },
+      { name: "Microsoft Power BI", icon: "powerbi" },
+      { name: "Data Studio", icon: "datastudio" },
+      { name: "Microsoft Excel (Advanced)", icon: "excel" },
+      { name: "Interactive Dashboards", icon: "dashboard" },
+      { name: "Executive Storytelling", icon: "storytelling" },
     ],
   },
   {
-    name: "Programming",
+    name: "Programming & Tools",
+    icon: "code",
     skills: [
-      "Python",
-      "Java",
-      "HTML / CSS",
-      "PHP",
-      "React",
-      "Laravel",
+      { name: "Python", icon: "python" },
+      { name: "SQL Querying", icon: "sql" },
+      { name: "Java (OOP)", icon: "java" },
+      { name: "R Language", icon: "r" },
+      { name: "Git & GitHub", icon: "github" },
+      { name: "HTML5 & CSS3", icon: "htmlcss" },
     ],
   },
   {
-    name: "Enterprise & Tools",
+    name: "Business & Strategy",
+    icon: "briefcase",
     skills: [
-      "SAP ERP (SCM)",
-      "Git / GitHub",
-      "Google Workspace",
-      "Microsoft Office",
+      { name: "Business Intelligence", icon: "bi" },
+      { name: "A/B Testing & Metrics", icon: "abtest" },
+      { name: "Process Optimization", icon: "process" },
+      { name: "Stakeholder Presentations", icon: "presentation" },
+      { name: "Cross-Functional Agile", icon: "agile" },
     ],
   },
 ];
