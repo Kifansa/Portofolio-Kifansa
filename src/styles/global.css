@@ -11,7 +11,7 @@
   --bg-card: rgba(255, 255, 255, 0.85);
   --accent: #0284C7; /* Cerulean Blue */
   --accent-light: #38BDF8;
-  --accent-secondary: #6366F1; /* Electric Indigo */
+  --accent-secondary: #1D4ED8; /* Deep Royal Blue (No purple) */
   --accent-glow: rgba(2, 132, 199, 0.2);
   --text: #0F172A;
   --text-muted: #475569;
@@ -27,9 +27,9 @@
   --bg-surface: #111827; /* Rich Dark Surface */
   --bg-surface-hover: #1E293B;
   --bg-card: rgba(17, 24, 39, 0.8);
-  --accent: #38BDF8; /* Electric Sky Blue from Logo Ribbon */
+  --accent: #38BDF8; /* Electric Sky Blue (Biru Muda) */
   --accent-light: #7DD3FC;
-  --accent-secondary: #818CF8; /* Vibrant Indigo Accent */
+  --accent-secondary: #2563EB; /* Deep Royal Blue (Biru Tua) */
   --accent-glow: rgba(56, 189, 248, 0.25);
   --text: #F1F5F9;
   --text-muted: #94A3B8;

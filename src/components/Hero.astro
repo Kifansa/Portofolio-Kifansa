@@ -1,13 +1,14 @@
 ---
+import DataAnalystBackground from "./DataAnalystBackground.astro";
 ---
 
 <section id="hero" class="relative min-h-[95vh] flex items-center justify-center overflow-hidden pt-24 pb-16">
-  <!-- Subtle background grid pattern -->
-  <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(var(--accent) 1px, transparent 1px); background-size: 40px 40px;"></div>
+  <!-- Interactive Data Analyst Background (Dots & Constellation Mesh) -->
+  <DataAnalystBackground />
 
   <!-- Animated gradient orbs (decorative) -->
-  <div class="absolute top-1/4 -left-32 w-80 h-80 rounded-full opacity-20 blur-3xl animate-pulse-glow" style="background: var(--accent);"></div>
-  <div class="absolute bottom-1/4 -right-32 w-80 h-80 rounded-full opacity-15 blur-3xl animate-pulse-glow" style="background: var(--accent-secondary); animation-delay: 2.5s;"></div>
+  <div class="absolute top-1/4 -left-32 w-80 h-80 rounded-full opacity-20 blur-3xl animate-pulse-glow pointer-events-none" style="background: var(--accent);"></div>
+  <div class="absolute bottom-1/4 -right-32 w-80 h-80 rounded-full opacity-15 blur-3xl animate-pulse-glow pointer-events-none" style="background: var(--accent-secondary); animation-delay: 2.5s;"></div>
 
   <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
     <!-- Name -->
