@@ -2,27 +2,148 @@
 interface Props {
   title?: string;
   description?: string;
+  keywords?: string;
+  ogDescription?: string;
+  image?: string;
+  canonicalUrl?: string;
 }
 
 const {
-  title = "Kifansa Naufal Fadhlurrohman — Data Analyst Portfolio",
-  description = "Data Analyst portfolio showcasing data visualization, analytics projects, and professional certifications. Skilled in Python, SQL, Tableau, and machine learning.",
+  title = "Kifansa Naufal Fadhlurrohman | Portfolio",
+  description = "Portofolio Kifansa Naufal Fadhlurrohman - Mahasiswa Sistem Informasi & Data Analyst yang berfokus pada analisis data dan machine learning.",
+  keywords = "Kifansa, Kifansa Naufal, Kifansa Naufal Fadhlurrohman, Portofolio Kifansa, Data Analyst, Data Analytics, Python, SQL, Tableau, Machine Learning, Telkom University Surabaya, Sistem Informasi",
+  ogDescription = "Personal portfolio and project showcase of Kifansa Naufal Fadhlurrohman.",
+  image = "https://kifansa.my.id/images/profile.png",
+  canonicalUrl = "https://kifansa.my.id/",
 } = Astro.props;
+
+const siteUrl = "https://kifansa.my.id";
+
+const schemaJson = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      "name": "Kifansa Naufal Fadhlurrohman",
+      "givenName": "Kifansa Naufal",
+      "familyName": "Fadhlurrohman",
+      "alternateName": [
+        "Kifansa",
+        "Kifansa Naufal",
+        "Kifansa Fadhlurrohman",
+        "Kifansa Naufal F"
+      ],
+      "jobTitle": "Data Analyst",
+      "description": description,
+      "url": siteUrl,
+      "image": image,
+      "sameAs": [
+        "https://www.linkedin.com/in/kifansanaufal",
+        "https://github.com/Kifansa",
+        "https://www.instagram.com/kifansa"
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Telkom University Surabaya"
+      },
+      "knowsAbout": [
+        "Data Analysis",
+        "Data Analytics",
+        "Machine Learning",
+        "Python",
+        "SQL",
+        "Tableau",
+        "Power BI",
+        "Business Intelligence",
+        "Exploratory Data Analysis",
+        "Predictive Modeling"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "url": siteUrl,
+      "name": "Kifansa Naufal Fadhlurrohman | Portfolio",
+      "description": description,
+      "publisher": {
+        "@id": `${siteUrl}/#person`
+      },
+      "inLanguage": ["id-ID", "en-US"]
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${siteUrl}/#webpage`,
+      "url": canonicalUrl,
+      "name": title,
+      "isPartOf": {
+        "@id": `${siteUrl}/#website`
+      },
+      "about": {
+        "@id": `${siteUrl}/#person`
+      },
+      "mainEntity": {
+        "@id": `${siteUrl}/#person`
+      }
+    }
+  ]
+};
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="id" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Judul yang muncul di hasil pencarian Google -->
+    <title>{title}</title>
+
+    <!-- Meta Tags Utama SEO -->
+    <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
     <meta name="author" content="Kifansa Naufal Fadhlurrohman" />
+    <meta name="publisher" content="Kifansa Naufal Fadhlurrohman" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Open Graph -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <!-- Pengindeksan Mesin Pencari (Googlebot & Search Engines) -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph untuk tampilan saat link dibagikan di medsos / chat (WhatsApp, LinkedIn, Instagram, Facebook) -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:alt" content="Kifansa Naufal Fadhlurrohman - Data Analyst Portfolio" />
+    <meta property="og:site_name" content="Kifansa Naufal Fadhlurrohman | Portfolio" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={ogDescription} />
+    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image:alt" content="Kifansa Naufal Fadhlurrohman - Data Analyst Portfolio" />
+
+    <!-- Mobile App & Theme Styling -->
+    <meta name="theme-color" content="#030712" />
+    <meta name="application-name" content="Kifansa Portfolio" />
+    <meta name="apple-mobile-web-app-title" content="Kifansa Portfolio" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Geo Localization -->
+    <meta name="geo.region" content="ID" />
+    <meta name="geo.placename" content="Surabaya, Indonesia" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/images/logo.png" />
@@ -32,7 +153,8 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <title>{title}</title>
+    <!-- Structured Data (JSON-LD) for Google Knowledge Graph & Rich Results -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaJson)} />
   </head>
   <body class="min-h-screen antialiased selection:bg-sky-500 selection:text-white">
     <slot />

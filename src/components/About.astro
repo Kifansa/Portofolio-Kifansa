@@ -1,12 +1,12 @@
 ---
 ---
 
-<section id="about" class="py-20 lg:py-28 relative">
+<section id="about" class="py-16 sm:py-20 lg:py-28 relative">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid md:grid-cols-5 gap-10 lg:gap-16 items-center">
+    <div class="grid md:grid-cols-5 gap-8 sm:gap-10 lg:gap-16 items-center">
       <!-- Photo Container -->
       <div class="md:col-span-2 reveal-left flex justify-center">
-        <div class="relative group">
+        <div class="relative group max-w-full">
           <!-- Animated Accent Glow Background -->
           <div
             class="absolute -inset-2 rounded-3xl opacity-50 blur-lg transition-all duration-500 group-hover:opacity-75"
@@ -17,7 +17,7 @@
             <img
               src="/images/profile.png"
               alt="Kifansa Naufal Fadhlurrohman — Data Analyst"
-              class="w-64 h-64 sm:w-72 sm:h-72 object-cover rounded-2xl"
+              class="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 object-cover rounded-2xl max-w-full"
               loading="eager"
             />
             <!-- Overlay badge -->
@@ -39,10 +39,10 @@
         </h2>
         <div class="section-line"></div>
 
-        <div class="space-y-4 text-base leading-relaxed" style="color: var(--text-muted);">
+        <div class="space-y-3.5 sm:space-y-4 text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
           <p>
             I am an <strong style="color: var(--text);">Information Systems</strong> undergraduate student at
-            <strong style="color: var(--text);">Telkom University Surabaya</strong> with a dedicated focus on
+            <strong style="color: var(--text);"> Telkom University Surabaya</strong> with a dedicated focus on
             data analytics, statistical modeling, and business intelligence.
             Maintaining a <strong style="color: var(--accent);">GPA of 3.86 / 4.00</strong>, I balance
             rigorous academic performance with hands-on technical and leadership roles.
@@ -58,11 +58,11 @@
         </div>
 
         <!-- Highlights tags -->
-        <div class="flex flex-wrap gap-2 pt-6">
+        <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-4 sm:pt-6">
           {
             ["Python & Pandas", "SQL & Database Querying", "Tableau BI", "Machine Learning", "Data Mining", "Statistical Inference"].map((item) => (
               <span
-                class="px-3.5 py-1.5 text-xs font-semibold rounded-full border transition-all duration-200 hover:scale-105"
+                class="px-3 py-1.5 text-xs font-semibold rounded-full border transition-all duration-200 hover:scale-105"
                 style="background: color-mix(in srgb, var(--accent) 8%, transparent); color: var(--accent); border-color: color-mix(in srgb, var(--accent) 25%, transparent);"
               >
                 {item}

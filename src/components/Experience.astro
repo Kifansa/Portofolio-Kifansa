@@ -2,9 +2,9 @@
 import { experiences } from "../data/experience";
 ---
 
-<section id="experience" class="py-20 lg:py-28 relative">
+<section id="experience" class="py-16 sm:py-20 lg:py-28 relative">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-14">
+    <div class="text-center mb-10 sm:mb-14">
       <p class="reveal text-xs sm:text-sm font-bold uppercase tracking-wider mb-2" style="color: var(--accent);">
         Career & Education
       </p>
@@ -21,43 +21,43 @@ import { experiences } from "../data/experience";
     <div class="relative">
       <!-- Timeline line -->
       <div
-        class="absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 rounded-full"
+        class="absolute left-3 sm:left-8 top-0 bottom-0 w-0.5 rounded-full"
         style="background: linear-gradient(to bottom, var(--accent), var(--accent-secondary), transparent);"
       ></div>
 
-      <div class="space-y-8">
+      <div class="space-y-6 sm:space-y-8">
         <!-- 1. Education / Academic Background at the Top (Ongoing) -->
-        <div class="reveal reveal-delay-1 relative pl-12 sm:pl-20">
+        <div class="reveal reveal-delay-1 relative pl-8 sm:pl-20">
           <div
-            class="absolute left-2.5 sm:left-6.5 top-1.5 w-3.5 h-3.5 rounded-full ring-4 shadow-sm"
+            class="absolute left-[5px] sm:left-[25px] top-1.5 w-3.5 h-3.5 rounded-full ring-4 shadow-sm"
             style="background: var(--accent); ring-color: var(--bg);"
           />
-          <div class="card rounded-3xl p-6 border shadow-md transition-all duration-300 hover:scale-[1.01]" style="border-color: var(--accent); border-width: 1.5px; background: color-mix(in srgb, var(--accent) 4%, var(--bg-surface));">
+          <div class="card rounded-3xl p-4 sm:p-6 border shadow-md transition-all duration-300 hover:scale-[1.01]" style="border-color: var(--accent); border-width: 1.5px; background: color-mix(in srgb, var(--accent) 4%, var(--bg-surface));">
             <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
               <div>
                 <span class="inline-block text-xs font-extrabold uppercase tracking-wider mb-1.5 px-3 py-1 rounded-full" style="background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent);">
                   Academic Background
                 </span>
-                <h3 class="font-heading font-bold text-lg sm:text-xl" style="color: var(--text);">
+                <h3 class="font-heading font-bold text-base sm:text-xl" style="color: var(--text);">
                   Information Systems (Undergraduate)
                 </h3>
-                <p class="text-sm font-medium" style="color: var(--text-muted);">
+                <p class="text-xs sm:text-sm font-medium" style="color: var(--text-muted);">
                   Telkom University Surabaya
                 </p>
               </div>
               <span
-                class="shrink-0 inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1 rounded-full"
+                class="shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full"
                 style="background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);"
               >
                 <span class="w-2 h-2 rounded-full animate-pulse" style="background: var(--accent);"></span>
                 Sep 2023 – Present
               </span>
             </div>
-            <div class="pt-3 border-t flex flex-wrap items-center justify-between gap-2" style="border-color: color-mix(in srgb, var(--accent) 15%, var(--border));">
+            <div class="pt-3 border-t flex flex-col sm:flex-row sm:items-center justify-between gap-2" style="border-color: color-mix(in srgb, var(--accent) 15%, var(--border));">
               <p class="text-xs sm:text-sm font-medium" style="color: var(--text-muted);">
                 Focus: Data Analytics, Machine Learning & Business Intelligence
               </p>
-              <span class="text-xs sm:text-sm font-extrabold px-3 py-1 rounded-full" style="background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent);">
+              <span class="text-xs sm:text-sm font-extrabold px-3 py-1 rounded-full self-start sm:self-auto" style="background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent);">
                 Current GPA: 3.86 / 4.00
               </span>
             </div>
@@ -67,15 +67,15 @@ import { experiences } from "../data/experience";
         <!-- 2. Work and Organizational Experiences (Ordered Newest to Oldest) -->
         {
           experiences.map((exp, idx) => (
-            <div class={`reveal reveal-delay-${Math.min(idx + 2, 5)} relative pl-12 sm:pl-20`}>
+            <div class={`reveal reveal-delay-${Math.min(idx + 2, 5)} relative pl-8 sm:pl-20`}>
               {/* Timeline dot */}
               <div
-                class="absolute left-2.5 sm:left-6.5 top-1.5 w-3.5 h-3.5 rounded-full ring-4 shadow-sm"
+                class="absolute left-[5px] sm:left-[25px] top-1.5 w-3.5 h-3.5 rounded-full ring-4 shadow-sm"
                 style={`background: ${exp.type === "work" ? "var(--accent)" : "var(--accent-secondary)"}; ring-color: var(--bg);`}
               />
 
               {/* Card */}
-              <div class="card rounded-3xl p-6 transition-all duration-300 hover:scale-[1.01]">
+              <div class="card rounded-3xl p-4 sm:p-6 transition-all duration-300 hover:scale-[1.01]">
                 <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                   <div>
                     <h3 class="font-heading font-bold text-base sm:text-lg" style="color: var(--text);">
@@ -86,7 +86,7 @@ import { experiences } from "../data/experience";
                     </p>
                   </div>
                   <span
-                    class="shrink-0 inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full"
+                    class="shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full"
                     style="background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);"
                   >
                     {exp.period.includes("Present") ? (

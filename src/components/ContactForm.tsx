@@ -76,9 +76,9 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-lg">
+    <form onSubmit={handleSubmit} className="space-y-4 w-full flex flex-col justify-between flex-1">
       <div>
-        <label htmlFor="name" className="block text-sm font-medium mb-1.5" style={{ color: "var(--text-muted)" }}>
+        <label htmlFor="name" className="block text-sm font-medium mb-1.5 text-center sm:text-left" style={{ color: "var(--text-muted)" }}>
           Name
         </label>
         <input
@@ -87,7 +87,7 @@ export default function ContactForm() {
           required
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="w-full px-4 py-2.5 rounded-lg border text-sm outline-none transition-colors duration-200"
+          className="w-full px-4 py-2.5 rounded-lg border text-sm outline-none transition-colors duration-200 text-center sm:text-left placeholder:text-center sm:placeholder:text-left"
           style={inputStyle}
           onFocus={(e) => (e.target.style.borderColor = "var(--accent)")}
           onBlur={(e) => (e.target.style.borderColor = "var(--border)")}
@@ -96,7 +96,7 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium mb-1.5" style={{ color: "var(--text-muted)" }}>
+        <label htmlFor="email" className="block text-sm font-medium mb-1.5 text-center sm:text-left" style={{ color: "var(--text-muted)" }}>
           Email
         </label>
         <input
@@ -105,7 +105,7 @@ export default function ContactForm() {
           required
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="w-full px-4 py-2.5 rounded-lg border text-sm outline-none transition-colors duration-200"
+          className="w-full px-4 py-2.5 rounded-lg border text-sm outline-none transition-colors duration-200 text-center sm:text-left placeholder:text-center sm:placeholder:text-left"
           style={inputStyle}
           onFocus={(e) => (e.target.style.borderColor = "var(--accent)")}
           onBlur={(e) => (e.target.style.borderColor = "var(--border)")}
@@ -114,7 +114,7 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium mb-1.5" style={{ color: "var(--text-muted)" }}>
+        <label htmlFor="message" className="block text-sm font-medium mb-1.5 text-center sm:text-left" style={{ color: "var(--text-muted)" }}>
           Message
         </label>
         <textarea
@@ -123,7 +123,7 @@ export default function ContactForm() {
           rows={4}
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          className="w-full px-4 py-2.5 rounded-lg border text-sm outline-none resize-none transition-colors duration-200"
+          className="w-full px-4 py-2.5 rounded-lg border text-sm outline-none resize-none transition-colors duration-200 text-center sm:text-left placeholder:text-center sm:placeholder:text-left"
           style={inputStyle}
           onFocus={(e) => (e.target.style.borderColor = "var(--accent)")}
           onBlur={(e) => (e.target.style.borderColor = "var(--border)")}
@@ -138,7 +138,7 @@ export default function ContactForm() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="flex items-center gap-2 text-emerald-400 text-sm font-medium"
+            className="flex items-center justify-center sm:justify-start gap-2 text-emerald-400 text-sm font-medium text-center sm:text-left"
           >
             <CheckIcon />
             Message sent successfully! I'll get back to you soon.
@@ -149,7 +149,7 @@ export default function ContactForm() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="flex items-center gap-2 text-red-400 text-sm font-medium"
+            className="flex items-center justify-center sm:justify-start gap-2 text-red-400 text-sm font-medium text-center sm:text-left"
           >
             <AlertIcon />
             Something went wrong. Please try again or email me directly.
@@ -160,7 +160,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="btn-primary w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed"
+        className="btn-primary w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed touch-manipulation"
       >
         {status === "loading" ? (
           <>

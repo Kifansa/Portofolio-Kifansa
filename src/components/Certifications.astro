@@ -2,9 +2,9 @@
 import { certifications } from "../data/certifications";
 ---
 
-<section id="certifications" class="py-20 lg:py-28 relative">
+<section id="certifications" class="py-16 sm:py-20 lg:py-28 relative">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-14">
+    <div class="text-center mb-10 sm:mb-14">
       <p class="reveal text-xs sm:text-sm font-bold uppercase tracking-wider mb-2" style="color: var(--accent);">
         Professional Credentials
       </p>
@@ -17,7 +17,7 @@ import { certifications } from "../data/certifications";
       </p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
       {
         certifications.map((cert, idx) => (
           <div class={`reveal-scale reveal-delay-${idx + 1} card rounded-3xl group overflow-hidden p-0 flex flex-col justify-between transition-all duration-300 hover:border-sky-500/50 hover:shadow-2xl`}>
@@ -41,14 +41,14 @@ import { certifications } from "../data/certifications";
                 </div>
               )}
 
-              <div class="p-6">
+              <div class="p-5 sm:p-6">
                 <div class="flex items-center gap-2 mb-2">
                   <span class="w-2 h-2 rounded-full" style="background: var(--accent);"></span>
                   <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--accent);">
                     {cert.issuer}
                   </span>
                 </div>
-                <h3 class="font-heading font-bold text-lg mb-2 leading-snug" style="color: var(--text);">
+                <h3 class="font-heading font-bold text-base sm:text-lg mb-2 leading-snug" style="color: var(--text);">
                   {cert.name}
                 </h3>
                 <p class="text-xs sm:text-sm font-medium mb-4" style="color: var(--text-muted);">

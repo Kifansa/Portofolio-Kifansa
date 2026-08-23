@@ -34,9 +34,9 @@ const contactLinks = [
 ];
 ---
 
-<section id="contact" class="py-20 lg:py-28 relative">
+<section id="contact" class="py-16 sm:py-20 lg:py-28 relative">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-14">
+    <div class="text-center mb-10 sm:mb-14">
       <p class="reveal text-xs sm:text-sm font-bold uppercase tracking-wider mb-2" style="color: var(--accent);">
         Let's Connect
       </p>
@@ -49,20 +49,20 @@ const contactLinks = [
       </p>
     </div>
 
-    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+    <div class="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-stretch">
       <!-- Contact Links -->
-      <div class="reveal-left space-y-4">
+      <div class="reveal-left flex flex-col justify-between gap-3 sm:gap-4 w-full">
         {
           contactLinks.map((link) => (
             <a
               href={link.href}
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
-              class="contact-btn card rounded-2xl flex items-center gap-4 group cursor-pointer p-4 transition-all duration-300 hover:scale-[1.02]"
+              class="contact-btn card rounded-2xl flex items-center gap-3.5 sm:gap-4 group cursor-pointer p-3.5 sm:p-4 transition-all duration-300 hover:scale-[1.02] touch-manipulation w-full"
               data-copyable={link.copyable ? link.value : undefined}
             >
               <div
-                class="flex items-center justify-center w-12 h-12 rounded-2xl shrink-0 transition-transform duration-300 group-hover:scale-110"
+                class="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-2xl shrink-0 transition-transform duration-300 group-hover:scale-110"
                 style="background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent);"
               >
                 <Fragment set:html={link.icon} />
@@ -74,7 +74,7 @@ const contactLinks = [
               {link.copyable ? (
                 <button
                   type="button"
-                  class="copy-btn shrink-0 p-2.5 rounded-xl border transition-all duration-200"
+                  class="copy-btn shrink-0 p-2 sm:p-2.5 rounded-xl border transition-all duration-200 touch-manipulation"
                   style="border-color: var(--border); color: var(--text-muted); background: var(--bg);"
                   data-copy={link.value}
                   aria-label={`Copy ${link.value}`}
@@ -94,12 +94,14 @@ const contactLinks = [
       </div>
 
       <!-- Contact Form -->
-      <div class="reveal-right">
-        <div class="card rounded-3xl p-6 sm:p-8 border shadow-lg" style="border-color: var(--border);">
-          <h3 class="font-heading font-bold text-xl mb-4" style="color: var(--text);">
-            Send a Direct Message
-          </h3>
-          <ContactForm client:visible />
+      <div class="reveal-right w-full flex flex-col">
+        <div class="card rounded-3xl p-5 sm:p-6 lg:p-8 border shadow-lg flex flex-col justify-between h-full w-full" style="border-color: var(--border);">
+          <div class="w-full flex-1 flex flex-col justify-between">
+            <h3 class="font-heading font-bold text-lg sm:text-xl mb-3 sm:mb-4 text-center sm:text-left" style="color: var(--text);">
+              Send a Direct Message
+            </h3>
+            <ContactForm client:visible />
+          </div>
         </div>
       </div>
     </div>
