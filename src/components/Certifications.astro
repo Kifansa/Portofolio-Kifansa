@@ -20,7 +20,10 @@ import { certifications } from "../data/certifications";
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
       {
         certifications.map((cert, idx) => (
-          <div class={`reveal-scale reveal-delay-${idx + 1} card rounded-3xl group overflow-hidden p-0 flex flex-col justify-between transition-all duration-300 hover:border-sky-500/50 hover:shadow-2xl`}>
+          <div
+            class={`reveal-scale reveal-delay-${idx + 1} card rounded-3xl group overflow-hidden p-0 flex flex-col justify-between transition-all duration-300 hover:border-sky-500 hover:shadow-2xl`}
+            style="background: color-mix(in srgb, var(--accent) 2%, var(--bg-surface)); border-color: var(--border);"
+          >
             <div>
               {cert.image && (
                 <div class="relative overflow-hidden aspect-[16/10] bg-slate-950/40">
@@ -32,8 +35,7 @@ import { certifications } from "../data/certifications";
                   />
                   {cert.courses && (
                     <span
-                      class="absolute top-3.5 right-3.5 px-3 py-1 text-xs font-bold rounded-full shadow-lg"
-                      style="background: var(--accent); color: #0A0E17;"
+                      class="absolute top-3.5 right-3.5 px-3 py-1 text-xs font-bold rounded-full shadow-lg border border-white/20 bg-slate-950/85 text-white backdrop-blur-md"
                     >
                       {cert.courses} Specialized Courses
                     </span>
@@ -63,8 +65,8 @@ import { certifications } from "../data/certifications";
                   href={cert.verifyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl text-xs font-bold border transition-all duration-200 group-hover:border-sky-500/50"
-                  style="background: color-mix(in srgb, var(--accent) 8%, var(--bg-surface)); color: var(--accent); border-color: var(--border);"
+                  class="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl text-xs font-bold border transition-all duration-200 group-hover:border-sky-500 shadow-sm"
+                  style="background: color-mix(in srgb, var(--accent) 8%, var(--bg-surface)); color: var(--accent); border-color: color-mix(in srgb, var(--accent) 25%, var(--border));"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                   Verify Official Certificate

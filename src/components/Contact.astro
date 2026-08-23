@@ -58,12 +58,13 @@ const contactLinks = [
               href={link.href}
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
-              class="contact-btn card rounded-2xl flex items-center gap-3.5 sm:gap-4 group cursor-pointer p-3.5 sm:p-4 transition-all duration-300 hover:scale-[1.02] touch-manipulation w-full"
+              class="contact-btn card rounded-2xl flex items-center gap-3.5 sm:gap-4 group cursor-pointer p-3.5 sm:p-4 transition-all duration-300 hover:scale-[1.02] touch-manipulation w-full shadow-sm"
+              style="background: color-mix(in srgb, var(--accent) 2%, var(--bg-surface)); border-color: var(--border);"
               data-copyable={link.copyable ? link.value : undefined}
             >
               <div
-                class="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-2xl shrink-0 transition-transform duration-300 group-hover:scale-110"
-                style="background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent);"
+                class="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-2xl shrink-0 transition-transform duration-300 group-hover:scale-110 shadow-sm"
+                style="background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 16%, transparent), color-mix(in srgb, var(--accent-secondary) 10%, transparent)); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);"
               >
                 <Fragment set:html={link.icon} />
               </div>
@@ -95,7 +96,7 @@ const contactLinks = [
 
       <!-- Contact Form -->
       <div class="reveal-right w-full flex flex-col">
-        <div class="card rounded-3xl p-5 sm:p-6 lg:p-8 border shadow-lg flex flex-col justify-between h-full w-full" style="border-color: var(--border);">
+        <div class="card rounded-3xl p-5 sm:p-6 lg:p-8 border shadow-lg flex flex-col justify-between h-full w-full" style="background: color-mix(in srgb, var(--accent) 2%, var(--bg-surface)); border-color: var(--border);">
           <div class="w-full flex-1 flex flex-col justify-between">
             <h3 class="font-heading font-bold text-lg sm:text-xl mb-3 sm:mb-4 text-center sm:text-left" style="color: var(--text);">
               Send a Direct Message

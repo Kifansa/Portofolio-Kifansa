@@ -32,10 +32,10 @@ import { experiences } from "../data/experience";
             class="absolute left-[5px] sm:left-[25px] top-1.5 w-3.5 h-3.5 rounded-full ring-4 shadow-sm"
             style="background: var(--accent); ring-color: var(--bg);"
           />
-          <div class="card rounded-3xl p-4 sm:p-6 border shadow-md transition-all duration-300 hover:scale-[1.01]" style="border-color: var(--accent); border-width: 1.5px; background: color-mix(in srgb, var(--accent) 4%, var(--bg-surface));">
+          <div class="card rounded-3xl p-4 sm:p-6 border shadow-md transition-all duration-300 hover:scale-[1.01]" style="border-color: color-mix(in srgb, var(--accent) 40%, var(--border)); border-width: 1.5px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 6%, var(--bg-surface)), color-mix(in srgb, var(--accent-secondary) 3%, var(--bg-surface)));">
             <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
               <div>
-                <span class="inline-block text-xs font-extrabold uppercase tracking-wider mb-1.5 px-3 py-1 rounded-full" style="background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent);">
+                <span class="inline-block text-xs font-extrabold uppercase tracking-wider mb-1.5 px-3 py-1 rounded-full shadow-sm" style="background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, transparent), color-mix(in srgb, var(--accent-secondary) 12%, transparent)); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);">
                   Academic Background
                 </span>
                 <h3 class="font-heading font-bold text-base sm:text-xl" style="color: var(--text);">
@@ -46,8 +46,8 @@ import { experiences } from "../data/experience";
                 </p>
               </div>
               <span
-                class="shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full"
-                style="background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);"
+                class="shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full shadow-sm"
+                style="background: color-mix(in srgb, var(--accent) 8%, var(--bg-surface)); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border));"
               >
                 <span class="w-2 h-2 rounded-full animate-pulse" style="background: var(--accent);"></span>
                 Sep 2023 – Present
@@ -57,7 +57,7 @@ import { experiences } from "../data/experience";
               <p class="text-xs sm:text-sm font-medium" style="color: var(--text-muted);">
                 Focus: Data Analytics, Machine Learning & Business Intelligence
               </p>
-              <span class="text-xs sm:text-sm font-extrabold px-3 py-1 rounded-full self-start sm:self-auto" style="background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent);">
+              <span class="text-xs sm:text-sm font-extrabold px-3 py-1 rounded-full self-start sm:self-auto shadow-sm" style="background: linear-gradient(135deg, #0284C7, #1D4ED8); color: #FFFFFF;">
                 Current GPA: 3.86 / 4.00
               </span>
             </div>
@@ -75,7 +75,7 @@ import { experiences } from "../data/experience";
               />
 
               {/* Card */}
-              <div class="card rounded-3xl p-4 sm:p-6 transition-all duration-300 hover:scale-[1.01]">
+              <div class="card rounded-3xl p-4 sm:p-6 transition-all duration-300 hover:scale-[1.01] shadow-sm" style="background: color-mix(in srgb, var(--accent) 2%, var(--bg-surface)); border-color: var(--border);">
                 <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                   <div>
                     <h3 class="font-heading font-bold text-base sm:text-lg" style="color: var(--text);">
@@ -86,8 +86,8 @@ import { experiences } from "../data/experience";
                     </p>
                   </div>
                   <span
-                    class="shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full"
-                    style="background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);"
+                    class="shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full shadow-sm"
+                    style="background: color-mix(in srgb, var(--accent) 8%, var(--bg-surface)); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border));"
                   >
                     {exp.period.includes("Present") ? (
                       <span class="w-2 h-2 rounded-full animate-pulse" style="background: var(--accent);"></span>

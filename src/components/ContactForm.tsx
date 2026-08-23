@@ -70,9 +70,19 @@ export default function ContactForm() {
   };
 
   const inputStyle = {
-    backgroundColor: "var(--bg)",
+    backgroundColor: "var(--bg-surface)",
     borderColor: "var(--border)",
     color: "var(--text)",
+  };
+
+  const handleFocus = (e: any) => {
+    e.target.style.borderColor = "var(--accent)";
+    e.target.style.boxShadow = "0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent)";
+  };
+
+  const handleBlur = (e: any) => {
+    e.target.style.borderColor = "var(--border)";
+    e.target.style.boxShadow = "none";
   };
 
   return (
@@ -87,10 +97,10 @@ export default function ContactForm() {
           required
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="w-full px-4 py-2.5 rounded-lg border text-sm outline-none transition-colors duration-200 text-center sm:text-left placeholder:text-center sm:placeholder:text-left"
+          className="w-full px-4 py-2.5 rounded-xl border text-sm outline-none transition-all duration-200 text-center sm:text-left placeholder:text-center sm:placeholder:text-left shadow-sm"
           style={inputStyle}
-          onFocus={(e) => (e.target.style.borderColor = "var(--accent)")}
-          onBlur={(e) => (e.target.style.borderColor = "var(--border)")}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           placeholder="Your name"
         />
       </div>
@@ -105,10 +115,10 @@ export default function ContactForm() {
           required
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="w-full px-4 py-2.5 rounded-lg border text-sm outline-none transition-colors duration-200 text-center sm:text-left placeholder:text-center sm:placeholder:text-left"
+          className="w-full px-4 py-2.5 rounded-xl border text-sm outline-none transition-all duration-200 text-center sm:text-left placeholder:text-center sm:placeholder:text-left shadow-sm"
           style={inputStyle}
-          onFocus={(e) => (e.target.style.borderColor = "var(--accent)")}
-          onBlur={(e) => (e.target.style.borderColor = "var(--border)")}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           placeholder="your@email.com"
         />
       </div>
@@ -123,10 +133,10 @@ export default function ContactForm() {
           rows={4}
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          className="w-full px-4 py-2.5 rounded-lg border text-sm outline-none resize-none transition-colors duration-200 text-center sm:text-left placeholder:text-center sm:placeholder:text-left"
+          className="w-full px-4 py-2.5 rounded-xl border text-sm outline-none resize-none transition-all duration-200 text-center sm:text-left placeholder:text-center sm:placeholder:text-left shadow-sm"
           style={inputStyle}
-          onFocus={(e) => (e.target.style.borderColor = "var(--accent)")}
-          onBlur={(e) => (e.target.style.borderColor = "var(--border)")}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           placeholder="Your message..."
         />
       </div>

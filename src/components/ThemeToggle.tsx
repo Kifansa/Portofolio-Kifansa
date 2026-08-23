@@ -43,7 +43,7 @@ export default function ThemeToggle() {
   return (
     <motion.button
       onClick={() => setIsDark(!isDark)}
-      className="relative flex items-center justify-center w-10 h-10 rounded-lg border transition-colors duration-200"
+      className="relative flex items-center justify-center w-9 h-9 rounded-full border shadow-sm transition-all duration-200 hover:scale-105"
       style={{
         borderColor: "var(--border)",
         backgroundColor: "var(--bg-surface)",

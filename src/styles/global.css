@@ -8,18 +8,32 @@
   --bg: #F8FAFC;
   --bg-surface: #FFFFFF;
   --bg-surface-hover: #F1F5F9;
-  --bg-card: rgba(255, 255, 255, 0.85);
-  --accent: #0284C7; /* Cerulean Blue */
-  --accent-light: #38BDF8;
-  --accent-secondary: #1D4ED8; /* Deep Royal Blue (No purple) */
-  --accent-glow: rgba(2, 132, 199, 0.2);
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --accent: #0284C7; /* Rich Cerulean Blue */
+  --accent-light: #0EA5E9; /* Vivid Sky Blue */
+  --accent-secondary: #1D4ED8; /* Royal Blue */
+  --accent-glow: rgba(2, 132, 199, 0.25);
+  --gradient-text: linear-gradient(135deg, #0284C7 0%, #2563EB 50%, #1D4ED8 100%);
+  --gradient-primary: linear-gradient(135deg, #0284C7 0%, #1D4ED8 100%);
+  --gradient-line: linear-gradient(90deg, #0284C7 0%, #2563EB 50%, #1D4ED8 100%);
+  
+  /* Primary Button in Light Mode: Vibrant Blue Gradient Background with Pure White Text */
+  --btn-primary-bg: linear-gradient(135deg, #0284C7 0%, #1D4ED8 100%);
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-border: transparent;
+  --btn-primary-hover-bg: linear-gradient(135deg, #0EA5E9 0%, #2563EB 100%);
+  --btn-primary-hover-text: #FFFFFF;
+  --btn-primary-hover-border: transparent;
+  --btn-primary-shadow: 0 4px 18px -2px rgba(2, 132, 199, 0.38), 0 2px 6px rgba(29, 78, 216, 0.25);
+  --btn-primary-hover-shadow: 0 10px 28px -4px rgba(2, 132, 199, 0.5);
+
   --text: #0F172A;
   --text-muted: #475569;
   --border: #E2E8F0;
   --border-subtle: #F1F5F9;
-  --shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
-  --shadow-lg: 0 20px 40px -15px rgba(2, 132, 199, 0.12);
-  --glow: 0 0 25px rgba(2, 132, 199, 0.18);
+  --shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 20px 40px -12px rgba(2, 132, 199, 0.18), 0 4px 12px rgba(15, 23, 42, 0.04);
+  --glow: 0 10px 30px -5px rgba(2, 132, 199, 0.25), 0 0 15px rgba(14, 165, 233, 0.15);
 }
 
 .dark {
@@ -31,6 +45,20 @@
   --accent-light: #7DD3FC;
   --accent-secondary: #2563EB; /* Deep Royal Blue (Biru Tua) */
   --accent-glow: rgba(56, 189, 248, 0.25);
+  --gradient-text: linear-gradient(135deg, #38BDF8 0%, #60A5FA 50%, #2563EB 100%);
+  --gradient-primary: linear-gradient(135deg, #38BDF8 0%, #2563EB 100%);
+  --gradient-line: linear-gradient(90deg, #38BDF8 0%, #2563EB 100%);
+  
+  /* Primary Button in Dark Mode: Electric Blue Gradient with White Text */
+  --btn-primary-bg: linear-gradient(135deg, #0284C7 0%, #2563EB 100%);
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-border: transparent;
+  --btn-primary-hover-bg: linear-gradient(135deg, #0EA5E9 0%, #3B82F6 100%);
+  --btn-primary-hover-text: #FFFFFF;
+  --btn-primary-hover-border: transparent;
+  --btn-primary-shadow: 0 4px 18px rgba(2, 132, 199, 0.35);
+  --btn-primary-hover-shadow: 0 10px 30px rgba(56, 189, 248, 0.45);
+
   --text: #F1F5F9;
   --text-muted: #94A3B8;
   --border: #1E293B;
@@ -61,6 +89,10 @@ html {
 
 body {
   background-color: var(--bg);
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -15%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%),
+    radial-gradient(ellipse 50% 35% at 100% 50%, color-mix(in srgb, var(--accent-secondary) 5%, transparent), transparent 60%);
+  background-attachment: fixed;
   color: var(--text);
   transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow-x: hidden;
@@ -74,7 +106,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ========== Selection ========== */
 ::selection {
   background-color: var(--accent);
-  color: #0A0E17;
+  color: var(--btn-text);
 }
 
 /* ========== Scrollbar ========== */
@@ -155,7 +187,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ========== Gradient Text & Graphics ========== */
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+  background: var(--gradient-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -172,7 +204,7 @@ h1, h2, h3, h4, h5, h6 {
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, var(--accent), transparent 60%, var(--accent-secondary));
+  background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 15%, transparent) 50%, var(--accent-secondary));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -188,18 +220,26 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ========== Modern Rounded Buttons ========== */
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
-  color: #0A0E17;
-  font-weight: 600;
+  background: var(--btn-primary-bg) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-weight: 700;
   padding: 0.75rem 1.4rem;
   border-radius: 9999px;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   position: relative;
   overflow: hidden;
   touch-action: manipulation;
+  box-shadow: var(--btn-primary-shadow);
+  text-decoration: none;
+}
+
+.btn-primary svg {
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
 }
 
 @media (min-width: 640px) {
@@ -209,8 +249,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary:hover {
+  background: var(--btn-primary-hover-bg) !important;
+  color: #FFFFFF !important;
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 10px 25px var(--accent-glow);
+  box-shadow: var(--btn-primary-hover-shadow);
 }
 
 .btn-primary:active {
@@ -229,6 +271,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: 0.6rem;
   touch-action: manipulation;
+  box-shadow: var(--shadow);
 }
 
 @media (min-width: 640px) {
@@ -241,7 +284,8 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--accent);
   color: var(--accent);
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 22px var(--accent-glow);
+  background: color-mix(in srgb, var(--accent) 4%, var(--bg-surface));
 }
 
 .btn-secondary:active {
@@ -261,7 +305,7 @@ h1, h2, h3, h4, h5, h6 {
 .section-line {
   width: 4.5rem;
   height: 4px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+  background: var(--gradient-line);
   border-radius: 9999px;
   margin-bottom: 2.5rem;
 }

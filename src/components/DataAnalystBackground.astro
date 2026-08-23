@@ -60,15 +60,15 @@
         colors.scannerGlow = "rgba(56, 189, 248, 0.10)";
         colors.scannerOuter = "rgba(37, 99, 235, 0.0)";
       } else {
-        colors.nodePrimary = "rgba(2, 132, 199, 0.85)";
-        colors.nodeSecondary = "rgba(29, 78, 216, 0.75)";
-        colors.nodeLight = "rgba(56, 189, 248, 0.85)";
-        colors.nodeCerulean = "rgba(14, 165, 233, 0.75)";
-        colors.lineColor = "rgba(2, 132, 199, 0.10)";
-        colors.cursorLineColor = "rgba(2, 132, 199, 0.38)";
-        colors.gridColor = "rgba(2, 132, 199, 0.02)";
-        colors.gridCrossColor = "rgba(2, 132, 199, 0.08)";
-        colors.scannerGlow = "rgba(2, 132, 199, 0.07)";
+        colors.nodePrimary = "rgba(2, 132, 199, 0.92)";
+        colors.nodeSecondary = "rgba(29, 78, 216, 0.85)";
+        colors.nodeLight = "rgba(14, 165, 233, 0.95)";
+        colors.nodeCerulean = "rgba(3, 105, 161, 0.88)";
+        colors.lineColor = "rgba(2, 132, 199, 0.20)";
+        colors.cursorLineColor = "rgba(2, 132, 199, 0.60)";
+        colors.gridColor = "rgba(2, 132, 199, 0.05)";
+        colors.gridCrossColor = "rgba(2, 132, 199, 0.18)";
+        colors.scannerGlow = "rgba(14, 165, 233, 0.15)";
         colors.scannerOuter = "rgba(29, 78, 216, 0.0)";
       }
     }
@@ -276,7 +276,7 @@
         const rad = 200;
         const grad = ctx.createRadialGradient(mx, my, 0, mx, my, rad);
         grad.addColorStop(0, colors.scannerGlow);
-        grad.addColorStop(0.5, "rgba(56, 189, 248, 0.03)");
+        grad.addColorStop(0.5, colors.isDark ? "rgba(56, 189, 248, 0.03)" : "rgba(14, 165, 233, 0.05)");
         grad.addColorStop(1, colors.scannerOuter);
 
         ctx.fillStyle = grad;

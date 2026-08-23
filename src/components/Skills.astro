@@ -21,13 +21,14 @@ import { skillCategories } from "../data/skills";
       {
         skillCategories.map((category, catIdx) => (
           <div
-            class={`reveal-scale reveal-delay-${catIdx + 1} card rounded-3xl group p-4 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:border-sky-500/50 hover:shadow-xl`}
+            class={`reveal-scale reveal-delay-${catIdx + 1} card rounded-3xl group p-4 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:border-sky-500 hover:shadow-xl`}
+            style="background: color-mix(in srgb, var(--accent) 3%, var(--bg-surface)); border-color: var(--border);"
           >
             <div>
               <div class="flex items-center gap-3 mb-5 pb-3 border-b" style="border-color: var(--border);">
                 <div
-                  class="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110"
-                  style="background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent);"
+                  class="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 shadow-sm"
+                  style="background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 16%, transparent), color-mix(in srgb, var(--accent-secondary) 10%, transparent)); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);"
                 >
                   {category.icon === "database" && (
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
@@ -54,7 +55,7 @@ import { skillCategories } from "../data/skills";
                 {category.skills.map((skill) => (
                   <div
                     class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 hover:scale-105 shadow-sm"
-                    style="background: color-mix(in srgb, var(--accent) 8%, var(--bg)); color: var(--text); border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);"
+                    style="background: color-mix(in srgb, var(--accent) 6%, var(--bg-surface)); color: var(--text); border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));"
                   >
                     {/* Tool Brand Logos (Latest Official Transparent Vector SVGs) */}
                     {skill.icon === "python" && (
