@@ -2,71 +2,100 @@
 import DataAnalystBackground from "./DataAnalystBackground.astro";
 ---
 
-<section id="hero" class="relative min-h-[90vh] sm:min-h-[95vh] flex items-center justify-center overflow-hidden pt-28 pb-12 sm:pt-32 sm:pb-16">
+<section id="hero" class="relative min-h-[90vh] sm:min-h-[95vh] flex items-center overflow-hidden pt-28 pb-14 sm:pt-32 sm:pb-16">
   <!-- Interactive Data Analyst Background (Dots & Constellation Mesh) -->
   <DataAnalystBackground />
 
-  <!-- Animated gradient orbs (decorative) -->
-  <div class="absolute top-1/4 -left-32 w-80 h-80 rounded-full opacity-35 dark:opacity-20 blur-3xl animate-pulse-glow pointer-events-none" style="background: radial-gradient(circle, var(--accent-light) 0%, var(--accent) 70%, transparent 100%);"></div>
-  <div class="absolute bottom-1/4 -right-32 w-80 h-80 rounded-full opacity-30 dark:opacity-15 blur-3xl animate-pulse-glow pointer-events-none" style="background: radial-gradient(circle, var(--accent) 0%, var(--accent-secondary) 70%, transparent 100%); animation-delay: 2.5s;"></div>
+  <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+      <!-- Left: Identity & CTA -->
+      <div class="lg:col-span-7 text-center lg:text-left">
+        <h1 class="reveal reveal-delay-1 font-heading text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight mb-3 sm:mb-4" style="color: var(--text);">
+          Kifansa Naufal
+          <span class="gradient-text block sm:inline"> Fadhlurrohman</span>
+        </h1>
 
-  <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <!-- Name -->
-    <h1 class="reveal reveal-delay-1 font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-3 sm:mb-4" style="color: var(--text);">
-      Kifansa Naufal
-      <span class="gradient-text block sm:inline"> Fadhlurrohman</span>
-    </h1>
+        <!-- Headline -->
+        <p class="reveal reveal-delay-2 text-base sm:text-xl md:text-2xl font-semibold mb-4 sm:mb-5 tracking-tight" style="color: var(--accent);">
+          Data Analyst · Turning Raw Data into Strategic Business Decisions
+        </p>
 
-    <!-- Headline -->
-    <p class="reveal reveal-delay-2 text-base sm:text-xl md:text-2xl font-semibold mb-4 sm:mb-5 tracking-tight" style="color: var(--accent);">
-      Data Analyst · Turning Raw Data into Strategic Business Decisions
-    </p>
+        <!-- Sub-headline -->
+        <p class="reveal reveal-delay-3 max-w-2xl mx-auto lg:mx-0 text-sm sm:text-base md:text-lg mb-7 sm:mb-9 leading-relaxed font-normal" style="color: var(--text-muted);">
+          Information Systems student at Telkom University Surabaya with deep expertise in exploratory data analysis, predictive modeling, and executive BI dashboards. Certified by Google in Advanced Data Analytics &amp; AI.
+        </p>
 
-    <!-- Sub-headline -->
-    <p class="reveal reveal-delay-3 max-w-2xl mx-auto text-sm sm:text-base md:text-lg mb-6 sm:mb-8 leading-relaxed font-normal" style="color: var(--text-muted);">
-      Information Systems student at Telkom University Surabaya with deep expertise in exploratory data analysis, predictive modeling, and executive BI dashboards. Certified by Google in Advanced Data Analytics & AI.
-    </p>
+        <!-- CTA Buttons -->
+        <div class="reveal reveal-delay-4 flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-8 sm:mb-10 w-full max-w-md sm:max-w-none mx-auto lg:mx-0">
+          <a
+            href="https://www.linkedin.com/in/kifansanaufal"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary w-full sm:w-auto justify-center text-xs sm:text-sm py-2.5 sm:py-3 px-5 sm:px-7"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            Connect on LinkedIn
+          </a>
+          <a href="#projects" class="btn-secondary w-full sm:w-auto justify-center text-xs sm:text-sm py-2.5 sm:py-3 px-5 sm:px-7">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            View Projects
+          </a>
+          <a href="#contact" class="btn-secondary w-full sm:w-auto justify-center text-xs sm:text-sm py-2.5 sm:py-3 px-5 sm:px-7">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Contact Me
+          </a>
+        </div>
 
-    <!-- CTA Buttons -->
-    <div class="reveal reveal-delay-4 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 w-full max-w-md sm:max-w-none mx-auto">
-      <a
-        href="https://www.linkedin.com/in/kifansanaufal"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn-primary w-full sm:w-auto justify-center text-xs sm:text-sm py-2.5 sm:py-3 px-5 sm:px-7"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-        Connect on LinkedIn
-      </a>
-      <a href="#projects" class="btn-secondary w-full sm:w-auto justify-center text-xs sm:text-sm py-2.5 sm:py-3 px-5 sm:px-7">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-        View Projects
-      </a>
-      <a href="#contact" class="btn-secondary w-full sm:w-auto justify-center text-xs sm:text-sm py-2.5 sm:py-3 px-5 sm:px-7">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        Contact Me
-      </a>
-    </div>
-
-    <!-- Quick Metrics Grid -->
-    <div class="reveal reveal-delay-5 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
-      <div class="card p-3.5 sm:p-4 rounded-2xl flex flex-col items-center justify-center border text-center transition-all duration-300 hover:scale-105 shadow-sm" style="background: color-mix(in srgb, var(--accent) 3%, var(--bg-surface)); border-color: color-mix(in srgb, var(--accent) 18%, var(--border));">
-        <span class="text-2xl sm:text-3xl font-extrabold font-heading gradient-text">3.86 / 4.00</span>
-        <span class="text-xs font-semibold mt-1" style="color: var(--text-muted);">Current Cumulative GPA</span>
+        <!-- Quick Metrics Grid -->
+        <div class="reveal reveal-delay-5 grid grid-cols-3 gap-3 sm:gap-4 max-w-xl mx-auto lg:mx-0">
+          <div class="kpi-card text-center">
+            <svg class="mx-auto mb-1.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            <span class="block text-lg sm:text-2xl font-extrabold font-heading gradient-text leading-tight">3.86<span class="text-xs sm:text-sm font-bold" style="color: var(--text-muted);"> / 4.00</span></span>
+            <span class="text-[10px] sm:text-xs font-semibold mt-1 block leading-tight" style="color: var(--text-muted);">Current Cumulative GPA</span>
+          </div>
+          <div class="kpi-card text-center">
+            <svg class="mx-auto mb-1.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            <span class="block text-lg sm:text-2xl font-extrabold font-heading gradient-text leading-tight">3x Google</span>
+            <span class="text-[10px] sm:text-xs font-semibold mt-1 block leading-tight" style="color: var(--text-muted);">Professional Data &amp; AI Certifications</span>
+          </div>
+          <div class="kpi-card text-center">
+            <svg class="mx-auto mb-1.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
+            <span class="block text-lg sm:text-2xl font-extrabold font-heading gradient-text leading-tight">100K+</span>
+            <span class="text-[10px] sm:text-xs font-semibold mt-1 block leading-tight" style="color: var(--text-muted);">Rows Processed &amp; Modeled</span>
+          </div>
+        </div>
       </div>
-      <div class="card p-3.5 sm:p-4 rounded-2xl flex flex-col items-center justify-center border text-center transition-all duration-300 hover:scale-105 shadow-sm" style="background: color-mix(in srgb, var(--accent) 3%, var(--bg-surface)); border-color: color-mix(in srgb, var(--accent) 18%, var(--border));">
-        <span class="text-2xl sm:text-3xl font-extrabold font-heading gradient-text">3x Google</span>
-        <span class="text-xs font-semibold mt-1" style="color: var(--text-muted);">Professional Data & AI Certifications</span>
-      </div>
-      <div class="card p-3.5 sm:p-4 rounded-2xl flex flex-col items-center justify-center border text-center transition-all duration-300 hover:scale-105 shadow-sm" style="background: color-mix(in srgb, var(--accent) 3%, var(--bg-surface)); border-color: color-mix(in srgb, var(--accent) 18%, var(--border));">
-        <span class="text-2xl sm:text-3xl font-extrabold font-heading gradient-text">100K+ Rows</span>
-        <span class="text-xs font-semibold mt-1" style="color: var(--text-muted);">Data Processed & Modeled</span>
+
+      <!-- Right: Professional Photo Card -->
+      <div class="lg:col-span-5 flex justify-center lg:justify-end reveal-scale reveal-delay-3">
+        <div class="relative group max-w-[320px] sm:max-w-[360px] w-full">
+          <!-- Soft glow behind card -->
+          <div
+            class="absolute -inset-3 rounded-[2rem] opacity-40 dark:opacity-30 blur-2xl transition-opacity duration-500 group-hover:opacity-60 pointer-events-none"
+            style="background: linear-gradient(135deg, var(--accent), var(--accent-secondary));"
+          >
+          </div>
+
+          <div class="profile-frame relative transition-transform duration-500 group-hover:scale-[1.02]">
+            <img
+              src="/images/profile.png"
+              alt="Kifansa Naufal Fadhlurrohman — Data Analyst"
+              class="w-full aspect-[4/5] object-cover object-top rounded-[1.25rem]"
+              loading="eager"
+            />
+            <!-- Info bar -->
+            <div class="absolute bottom-3 left-3 right-3 py-2 px-3 rounded-xl glass border border-white/20 dark:border-white/10 flex items-center justify-between text-xs font-semibold shadow-lg">
+              <span style="color: var(--text);">Telkom University</span>
+              <span class="px-2.5 py-0.5 rounded-full font-bold shadow-sm text-white" style="background: var(--gradient-primary);">GPA 3.86</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Scroll indicator -->
-  <div class="hidden sm:block absolute bottom-4 left-1/2 -translate-x-1/2 reveal reveal-delay-6">
+  <div class="hidden sm:block absolute bottom-4 left-1/2 -translate-x-1/2 reveal reveal-delay-6 z-10">
     <a href="#about" class="flex flex-col items-center gap-1.5 text-xs font-medium animate-bounce" style="color: var(--text-muted);" aria-label="Scroll to About section">
       <span>Scroll</span>
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
