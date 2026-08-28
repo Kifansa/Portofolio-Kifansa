@@ -6,14 +6,14 @@ import { experiences } from "../data/experience";
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-10 sm:mb-14">
       <div class="reveal-left">
-        <p class="section-eyebrow">Career & Education</p>
+        <p class="section-eyebrow">Work & Leadership</p>
         <h2 class="section-heading" style="color: var(--text);">
-          Experience & Academic Background
+          Experience
         </h2>
         <div class="section-line"></div>
       </div>
       <p class="reveal-right max-w-md text-sm sm:text-base lg:text-right lg:pb-2" style="color: var(--text-muted);">
-        Academic background, organizational leadership, and professional experience in technology and data analytics.
+        Professional work, teaching assistantships, and organizational leadership in technology and data analytics.
       </p>
     </div>
 
@@ -26,48 +26,10 @@ import { experiences } from "../data/experience";
       ></div>
 
       <div class="space-y-6 sm:space-y-8">
-        <!-- 1. Education / Academic Background at the Top (Ongoing) -->
-        <div class="reveal reveal-delay-1 relative pl-8 sm:pl-20">
-          <div
-            class="absolute left-[5px] sm:left-[25px] top-1.5 w-3.5 h-3.5 rounded-full ring-4 shadow-sm"
-            style="background: var(--accent); --tw-ring-color: var(--bg);"
-          />
-          <div class="card rounded-3xl p-4 sm:p-6 border shadow-md transition-all duration-300 hover:scale-[1.01]" style="border-color: color-mix(in srgb, var(--accent) 40%, var(--border)); border-width: 1.5px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 6%, var(--bg-surface)), color-mix(in srgb, var(--accent-secondary) 3%, var(--bg-surface)));">
-            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
-              <div>
-                <span class="inline-block text-xs font-extrabold uppercase tracking-wider mb-1.5 px-3 py-1 rounded-full shadow-sm" style="background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, transparent), color-mix(in srgb, var(--accent-secondary) 12%, transparent)); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);">
-                  Academic Background
-                </span>
-                <h3 class="font-heading font-bold text-base sm:text-xl" style="color: var(--text);">
-                  Information Systems (Undergraduate)
-                </h3>
-                <p class="text-xs sm:text-sm font-medium" style="color: var(--text-muted);">
-                  Telkom University Surabaya
-                </p>
-              </div>
-              <span
-                class="shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full shadow-sm"
-                style="background: color-mix(in srgb, var(--accent) 8%, var(--bg-surface)); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border));"
-              >
-                <span class="w-2 h-2 rounded-full animate-pulse" style="background: var(--accent);"></span>
-                Sep 2023 – Present
-              </span>
-            </div>
-            <div class="pt-3 border-t flex flex-col sm:flex-row sm:items-center justify-between gap-2" style="border-color: color-mix(in srgb, var(--accent) 15%, var(--border));">
-              <p class="text-xs sm:text-sm font-medium" style="color: var(--text-muted);">
-                Focus: Data Analytics, Machine Learning & Business Intelligence
-              </p>
-              <span class="text-xs sm:text-sm font-extrabold px-3 py-1 rounded-full self-start sm:self-auto shadow-sm" style="background: linear-gradient(135deg, #0284C7, #1D4ED8); color: #FFFFFF;">
-                Current GPA: 3.86 / 4.00
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. Work and Organizational Experiences (Ordered Newest to Oldest) -->
+        <!-- Work and Organizational Experiences (Ordered Newest to Oldest) -->
         {
           experiences.map((exp, idx) => (
-            <div class={`reveal reveal-delay-${Math.min(idx + 2, 5)} relative pl-8 sm:pl-20`}>
+            <div class={`reveal reveal-delay-${Math.min(idx + 1, 6)} relative pl-8 sm:pl-20`}>
               {/* Timeline dot */}
               <div
                 class="absolute left-[5px] sm:left-[25px] top-1.5 w-3.5 h-3.5 rounded-full ring-4 shadow-sm"

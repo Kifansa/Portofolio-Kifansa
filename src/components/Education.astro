@@ -1,0 +1,136 @@
+﻿---
+// Education.astro - Education & Academic Background Section
+---
+
+<section id="education" class="py-16 sm:py-20 lg:py-28 relative">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header Section -->
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-10 sm:mb-14">
+      <div class="reveal-left">
+        <p class="section-eyebrow">Academic Background</p>
+        <h2 class="section-heading" style="color: var(--text);">
+          Education
+        </h2>
+        <div class="section-line"></div>
+      </div>
+      <p class="reveal-right max-w-md text-sm sm:text-base lg:text-right lg:pb-2" style="color: var(--text-muted);">
+        Formal academic background, relevant analytical coursework, and cumulative performance.
+      </p>
+    </div>
+
+    <!-- Main Education Card -->
+    <div class="reveal reveal-delay-2 card rounded-3xl p-6 sm:p-8 lg:p-10 border transition-all duration-300 relative overflow-hidden group" style="background: color-mix(in srgb, var(--accent) 3%, var(--bg-surface)); border-color: var(--border);">
+      <!-- Subtle ambient background glow -->
+      <div
+        class="absolute -right-20 -top-20 w-64 h-64 rounded-full opacity-15 dark:opacity-10 blur-3xl pointer-events-none"
+        style="background: linear-gradient(135deg, var(--accent), var(--accent-secondary));"
+      ></div>
+
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
+        <!-- Left: Logo & Core Degree Information -->
+        <div class="lg:col-span-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-7">
+          <!-- University Logo Container with clean white backdrop for maximum clarity in light & dark mode -->
+          <div class="shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-white p-3.5 flex items-center justify-center border shadow-md transition-transform duration-300 group-hover:scale-105" style="border-color: rgba(226, 232, 240, 0.9);">
+            <img
+              src="/images/Telkom_university_surabaya.png"
+              alt="Telkom University Surabaya Logo"
+              class="w-full h-full object-contain"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- University & Major Info -->
+          <div class="space-y-2">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-xs font-medium px-2.5 py-1 rounded-full" style="color: var(--text-muted); background: var(--bg);">
+                Sep 2023 – Present
+              </span>
+            </div>
+
+            <h3 class="font-heading font-bold text-xl sm:text-2xl lg:text-3xl tracking-tight" style="color: var(--text);">
+              Telkom University Surabaya
+            </h3>
+
+            <p class="text-sm sm:text-base font-semibold" style="color: var(--accent);">
+              Bachelor of Information Systems
+            </p>
+
+            <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
+              Faculty of Industrial Engineering · Surabaya, East Java, Indonesia
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: GPA Highlight Metric Card -->
+        <div class="lg:col-span-4 flex flex-col justify-center">
+          <div class="kpi-card text-center p-5 sm:p-6 rounded-2xl border" style="background: color-mix(in srgb, var(--accent) 6%, var(--bg-surface));">
+            <span class="text-xs font-bold uppercase tracking-wider block mb-1" style="color: var(--accent);">
+              Cumulative GPA
+            </span>
+            <div class="flex items-baseline justify-center gap-1">
+              <span class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading gradient-text">
+                3.86
+              </span>
+              <span class="text-sm sm:text-base font-bold" style="color: var(--text-muted);">
+                / 4.00
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="my-6 sm:my-8 border-t" style="border-color: color-mix(in srgb, var(--accent) 15%, var(--border));"></div>
+
+      <!-- Additional Academic Focus & Highlights -->
+      <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
+        <!-- Focus Area -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider mb-3 flex items-center gap-2" style="color: var(--text);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            Focus &amp; Relevant Coursework
+          </h4>
+          <div class="flex flex-wrap gap-2">
+            {
+              [
+                "Data Analytics",
+                "Data Mining",
+                "Machine Learning",
+                "Database Systems & SQL",
+                "Business Intelligence",
+                "Enterprise Systems & ERP",
+                "Statistics & Probability",
+                "Object-Oriented Programming"
+              ].map((item) => (
+                <span
+                  class="px-3 py-1 text-xs font-medium rounded-full border transition-colors duration-200"
+                  style="background: var(--bg); color: var(--text); border-color: var(--border);"
+                >
+                  {item}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Academic Role & Activities -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider mb-3 flex items-center gap-2" style="color: var(--text);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            Academic Roles &amp; Activities
+          </h4>
+          <ul class="space-y-2 text-xs sm:text-sm" style="color: var(--text-muted);">
+            <li class="flex items-start gap-2">
+              <span class="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full" style="background: var(--accent);"></span>
+              <span>Teaching Assistant for <strong>Data Mining</strong> and <strong>Object-Oriented Programming (OOP)</strong> lab sessions.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full" style="background: var(--accent);"></span>
+              <span>Contributed to community research on digital transformation and IT literacy for local enterprise initiatives.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
