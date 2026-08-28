@@ -3,7 +3,7 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ========== Theme Colors (CSS Custom Properties - Matched to Logo.png) ========== */
+/* ========== Theme Colors (CSS Custom Properties - Matched to Logo.webp) ========== */
 :root {
   --bg: #F8FAFC;
   --bg-surface: #FFFFFF;

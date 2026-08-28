@@ -33,27 +33,27 @@ export const projects: Project[] = [
     slides: [
       {
         title: "Executive Summary & KPIs",
-        image: "/images/projects/dashboard-slide-1.png",
+        image: "/images/projects/dashboard-slide-1.webp",
         description: "Macro sales performance overview, brand market share, and vehicle category distribution.",
       },
       {
         title: "Sales & Product Dynamics",
-        image: "/images/projects/dashboard-slide-2.png",
+        image: "/images/projects/dashboard-slide-2.webp",
         description: "Top 10 vehicle models by sales volume, EV vs ICE comparison, and pricing distribution.",
       },
       {
         title: "Customer Demographics",
-        image: "/images/projects/dashboard-slide-3.png",
+        image: "/images/projects/dashboard-slide-3.webp",
         description: "Buyer age breakdown, gender ratio, geographic concentration, and satisfaction ratings.",
       },
       {
         title: "Financial & Payment Analysis",
-        image: "/images/projects/dashboard-slide-4.png",
+        image: "/images/projects/dashboard-slide-4.webp",
         description: "Cash vs credit ratio, loan tenure distribution (12 to 60 months), and dealer finance metrics.",
       },
       {
         title: "Strategic Recommendations",
-        image: "/images/projects/dashboard-slide-5.png",
+        image: "/images/projects/dashboard-slide-5.webp",
         description: "Data-driven business decisions for dealerships, OEMs, and financing institutions.",
       },
     ],
