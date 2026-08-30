@@ -19,13 +19,7 @@
     </div>
 
     <!-- Main Education Card -->
-    <div class="reveal reveal-delay-2 card rounded-3xl p-6 sm:p-8 lg:p-10 border transition-all duration-300 relative overflow-hidden group" style="background: color-mix(in srgb, var(--accent) 3%, var(--bg-surface)); border-color: var(--border);">
-      <!-- Subtle ambient background glow -->
-      <div
-        class="absolute -right-20 -top-20 w-64 h-64 rounded-full opacity-15 dark:opacity-10 blur-3xl pointer-events-none"
-        style="background: linear-gradient(135deg, var(--accent), var(--accent-secondary));"
-      ></div>
-
+    <div class="reveal reveal-delay-2 card rounded-3xl p-6 sm:p-8 lg:p-10 border transition-all duration-300 relative overflow-hidden group" style="border-color: color-mix(in srgb, var(--border) 40%, transparent);">
       <div class="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
         <!-- Left: Logo & Core Degree Information -->
         <div class="lg:col-span-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-7">
@@ -68,7 +62,7 @@
               Cumulative GPA
             </span>
             <div class="flex items-baseline justify-center gap-1">
-              <span class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading gradient-text">
+              <span class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading" style="color: var(--accent);" data-count-to="3.86" data-decimals="2">
                 3.86
               </span>
               <span class="text-sm sm:text-base font-bold" style="color: var(--text-muted);">
@@ -103,8 +97,8 @@
                 "Object-Oriented Programming"
               ].map((item) => (
                 <span
-                  class="px-3 py-1 text-xs font-medium rounded-full border transition-colors duration-200"
-                  style="background: var(--bg); color: var(--text); border-color: var(--border);"
+                  class="px-3 py-1 text-xs font-medium rounded-full border"
+                  style="color: var(--text); background: var(--bg-card); border-color: var(--border);"
                 >
                   {item}
                 </span>

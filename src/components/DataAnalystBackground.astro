@@ -1,15 +1,15 @@
 ---
+// DataAnalystBackground.astro - Executive Analytical Coordinate Plane & Telemetry Grid
 ---
 
 <div id="data-analyst-bg-container" class="absolute inset-0 overflow-hidden pointer-events-none select-none z-0">
-  <!-- Interactive Canvas for Dense Data Points, Constellation Mesh & Cursor Reactive Links -->
-  <canvas id="data-canvas" class="w-full h-full block"></canvas>
+  <canvas id="analytical-canvas" class="w-full h-full block opacity-75 dark:opacity-60 transition-opacity duration-500"></canvas>
 </div>
 
 <script is:inline>
   (function () {
     const container = document.getElementById("data-analyst-bg-container");
-    const canvas = document.getElementById("data-canvas");
+    const canvas = document.getElementById("analytical-canvas");
     if (!container || !canvas) return;
 
     const ctx = canvas.getContext("2d");
@@ -21,208 +21,8 @@
     let animationFrameId = null;
     let isVisible = true;
 
-    // Mouse coordinates (relative to the container)
-    let mouse = {
-      x: -1000,
-      y: -1000,
-      targetX: -1000,
-      targetY: -1000,
-      active: false,
-    };
-
-    // Theme color cache (No purple, pure light blue to deep blue)
-    let colors = {
-      isDark: true,
-      nodePrimary: "rgba(56, 189, 248, 0.85)",     // Light Sky Blue
-      nodeSecondary: "rgba(37, 99, 235, 0.75)",   // Deep Royal Blue
-      nodeLight: "rgba(125, 211, 252, 0.9)",      // Ice Sky Blue
-      nodeCerulean: "rgba(14, 165, 233, 0.8)",    // Cerulean Blue
-      lineColor: "rgba(56, 189, 248, 0.12)",
-      cursorLineColor: "rgba(56, 189, 248, 0.35)",
-      gridColor: "rgba(56, 189, 248, 0.025)",
-      gridCrossColor: "rgba(56, 189, 248, 0.08)",
-      scannerGlow: "rgba(56, 189, 248, 0.10)",
-      scannerOuter: "rgba(37, 99, 235, 0.0)",
-    };
-
-    function updateColors() {
-      const isDark = document.documentElement.classList.contains("dark");
-      colors.isDark = isDark;
-      if (isDark) {
-        colors.nodePrimary = "rgba(56, 189, 248, 0.85)";
-        colors.nodeSecondary = "rgba(37, 99, 235, 0.75)";
-        colors.nodeLight = "rgba(125, 211, 252, 0.9)";
-        colors.nodeCerulean = "rgba(14, 165, 233, 0.8)";
-        colors.lineColor = "rgba(56, 189, 248, 0.11)";
-        colors.cursorLineColor = "rgba(56, 189, 248, 0.4)";
-        colors.gridColor = "rgba(56, 189, 248, 0.025)";
-        colors.gridCrossColor = "rgba(56, 189, 248, 0.09)";
-        colors.scannerGlow = "rgba(56, 189, 248, 0.10)";
-        colors.scannerOuter = "rgba(37, 99, 235, 0.0)";
-      } else {
-        colors.nodePrimary = "rgba(2, 132, 199, 0.92)";
-        colors.nodeSecondary = "rgba(29, 78, 216, 0.85)";
-        colors.nodeLight = "rgba(14, 165, 233, 0.95)";
-        colors.nodeCerulean = "rgba(3, 105, 161, 0.88)";
-        colors.lineColor = "rgba(2, 132, 199, 0.20)";
-        colors.cursorLineColor = "rgba(2, 132, 199, 0.60)";
-        colors.gridColor = "rgba(2, 132, 199, 0.05)";
-        colors.gridCrossColor = "rgba(2, 132, 199, 0.18)";
-        colors.scannerGlow = "rgba(14, 165, 233, 0.15)";
-        colors.scannerOuter = "rgba(29, 78, 216, 0.0)";
-      }
-    }
-
-    // High Density Node Configuration
-    let nodes = [];
-    const NUM_NODES_DESKTOP = 135;
-    const NUM_NODES_MOBILE = 65;
-    const MAX_CONNECTION_DIST = 95;
-    const CURSOR_CONNECT_DIST = 160;
-    const CURSOR_FORCE_RADIUS = 150;
-
-    class DataNode {
-      constructor(w, h) {
-        this.reset(w, h, true);
-      }
-
-      reset(w, h, initial = false) {
-        this.x = Math.random() * w;
-        this.y = Math.random() * h;
-        
-        // Subtle organic floating velocity
-        this.vx = (Math.random() - 0.5) * 0.4;
-        this.vy = (Math.random() - 0.5) * 0.4;
-        
-        // Mouse spring offset
-        this.offsetX = 0;
-        this.offsetY = 0;
-        this.targetOffsetX = 0;
-        this.targetOffsetY = 0;
-
-        // Size and brightness
-        const rand = Math.random();
-        if (rand > 0.92) {
-          // Centroid cluster node (larger with soft pulse halo)
-          this.radius = 2.8 + Math.random() * 1.4;
-          this.isCentroid = true;
-        } else if (rand > 0.65) {
-          // Medium data point
-          this.radius = 1.8 + Math.random() * 0.8;
-          this.isCentroid = false;
-        } else {
-          // Fine data point
-          this.radius = 1.0 + Math.random() * 0.7;
-          this.isCentroid = false;
-        }
-
-        this.baseAlpha = 0.2 + Math.random() * 0.55;
-        this.alpha = this.baseAlpha;
-        this.pulseAngle = Math.random() * Math.PI * 2;
-        this.pulseSpeed = 0.015 + Math.random() * 0.025;
-
-        // Color palette distribution
-        const colorRand = Math.random();
-        if (colorRand > 0.6) {
-          this.colorKey = "primary"; // Light Sky Blue
-        } else if (colorRand > 0.3) {
-          this.colorKey = "secondary"; // Deep Royal Blue
-        } else if (colorRand > 0.15) {
-          this.colorKey = "light"; // Ice Sky Blue
-        } else {
-          this.colorKey = "cerulean"; // Cerulean Blue
-        }
-      }
-
-      update(w, h, mx, my, mouseActive) {
-        // Natural drift
-        this.x += this.vx;
-        this.y += this.vy;
-
-        // Pulse
-        this.pulseAngle += this.pulseSpeed;
-
-        // Boundary wrap
-        if (this.x < -20) this.x = w + 20;
-        if (this.x > w + 20) this.x = -20;
-        if (this.y < -20) this.y = h + 20;
-        if (this.y > h + 20) this.y = -20;
-
-        // Interactive mouse magnetic reaction
-        if (mouseActive) {
-          const dx = mx - (this.x + this.offsetX);
-          const dy = my - (this.y + this.offsetY);
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < CURSOR_FORCE_RADIUS && dist > 0) {
-            const force = (1 - dist / CURSOR_FORCE_RADIUS) * 22;
-            const angle = Math.atan2(dy, dx);
-            this.targetOffsetX = Math.cos(angle) * force + Math.sin(angle) * (force * 0.3);
-            this.targetOffsetY = Math.sin(angle) * force - Math.cos(angle) * (force * 0.3);
-            this.alpha = Math.min(1, this.baseAlpha + (1 - dist / CURSOR_FORCE_RADIUS) * 0.5);
-          } else {
-            this.targetOffsetX = 0;
-            this.targetOffsetY = 0;
-            this.alpha += (this.baseAlpha - this.alpha) * 0.06;
-          }
-        } else {
-          this.targetOffsetX = 0;
-          this.targetOffsetY = 0;
-          this.alpha += (this.baseAlpha - this.alpha) * 0.06;
-        }
-
-        // Smooth spring easing
-        this.offsetX += (this.targetOffsetX - this.offsetX) * 0.09;
-        this.offsetY += (this.targetOffsetY - this.offsetY) * 0.09;
-      }
-
-      draw(ctx) {
-        const renderX = this.x + this.offsetX;
-        const renderY = this.y + this.offsetY;
-
-        ctx.save();
-
-        if (this.isCentroid) {
-          // Centroid pulsating outer glow ring
-          const pulse = Math.sin(this.pulseAngle) * 2.5;
-          ctx.beginPath();
-          ctx.arc(renderX, renderY, this.radius + 3.5 + pulse, 0, Math.PI * 2);
-          ctx.strokeStyle = colors.nodePrimary;
-          ctx.globalAlpha = Math.max(0.08, this.alpha * 0.35);
-          ctx.lineWidth = 1;
-          ctx.stroke();
-
-          // Centroid core
-          ctx.beginPath();
-          ctx.arc(renderX, renderY, this.radius, 0, Math.PI * 2);
-          ctx.fillStyle = colors.nodePrimary;
-          ctx.globalAlpha = this.alpha;
-          ctx.fill();
-        } else {
-          // Standard Clean Data Dot
-          ctx.beginPath();
-          ctx.arc(renderX, renderY, this.radius, 0, Math.PI * 2);
-          if (this.colorKey === "primary") ctx.fillStyle = colors.nodePrimary;
-          else if (this.colorKey === "secondary") ctx.fillStyle = colors.nodeSecondary;
-          else if (this.colorKey === "light") ctx.fillStyle = colors.nodeLight;
-          else ctx.fillStyle = colors.nodeCerulean;
-          
-          ctx.globalAlpha = this.alpha;
-          ctx.fill();
-        }
-
-        ctx.restore();
-      }
-    }
-
-    function initNodes() {
-      const isMobile = width < 768;
-      const count = isMobile ? NUM_NODES_MOBILE : NUM_NODES_DESKTOP;
-      nodes = [];
-      for (let i = 0; i < count; i++) {
-        nodes.push(new DataNode(width, height));
-      }
-    }
+    // Mouse coordinates (relative to container)
+    let mouse = { x: -1000, y: -1000, targetX: -1000, targetY: -1000, active: false };
 
     function resize() {
       const rect = container.getBoundingClientRect();
@@ -230,279 +30,158 @@
       height = rect.height;
       dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-      initNodes();
-      updateColors();
+      draw();
     }
 
-    // Grid rendering (Subtle analytical coordinate plane)
-    function drawDataGrid(ctx, w, h, mx, my, mouseActive) {
-      const gridSize = 56;
-      ctx.save();
-      ctx.lineWidth = 1;
-
-      // Grid lines
-      ctx.strokeStyle = colors.gridColor;
-      ctx.beginPath();
-      for (let x = 0; x < w; x += gridSize) {
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, h);
-      }
-      for (let y = 0; y < h; y += gridSize) {
-        ctx.moveTo(0, y);
-        ctx.lineTo(w, y);
-      }
-      ctx.stroke();
-
-      // Subtle crosshairs at grid intersections
-      ctx.strokeStyle = colors.gridCrossColor;
-      const crossSize = 2.5;
-      ctx.beginPath();
-      for (let x = gridSize; x < w; x += gridSize * 2) {
-        for (let y = gridSize; y < h; y += gridSize * 2) {
-          ctx.moveTo(x - crossSize, y);
-          ctx.lineTo(x + crossSize, y);
-          ctx.moveTo(x, y - crossSize);
-          ctx.lineTo(x, y + crossSize);
-        }
-      }
-      ctx.stroke();
-
-      // Cursor soft radial ambient light
-      if (mouseActive) {
-        const rad = 200;
-        const grad = ctx.createRadialGradient(mx, my, 0, mx, my, rad);
-        grad.addColorStop(0, colors.scannerGlow);
-        grad.addColorStop(0.5, colors.isDark ? "rgba(56, 189, 248, 0.03)" : "rgba(14, 165, 233, 0.05)");
-        grad.addColorStop(1, colors.scannerOuter);
-
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(mx, my, rad, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Subtle thin radar orbit ring around cursor
-        const time = Date.now() * 0.0012;
-        ctx.strokeStyle = colors.cursorLineColor;
-        ctx.lineWidth = 1;
-        ctx.setLineDash([3, 6]);
-        ctx.beginPath();
-        ctx.arc(mx, my, 24, time, time + Math.PI * 1.5);
-        ctx.stroke();
-        ctx.setLineDash([]);
-      }
-
-      ctx.restore();
-    }
-
-    // Connect nodes with lines & connect to cursor
-    function drawConnections(ctx, mx, my, mouseActive) {
-      const len = nodes.length;
-
-      // 1. Inter-node connection network
-      for (let i = 0; i < len; i++) {
-        const n1 = nodes[i];
-        const x1 = n1.x + n1.offsetX;
-        const y1 = n1.y + n1.offsetY;
-
-        for (let j = i + 1; j < len; j++) {
-          const n2 = nodes[j];
-          const x2 = n2.x + n2.offsetX;
-          const y2 = n2.y + n2.offsetY;
-
-          const dx = x2 - x1;
-          const dy = y2 - y1;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < MAX_CONNECTION_DIST) {
-            const alpha = (1 - dist / MAX_CONNECTION_DIST) * 0.18 * Math.min(n1.alpha, n2.alpha);
-            ctx.save();
-            ctx.strokeStyle = colors.lineColor;
-            ctx.globalAlpha = alpha;
-            ctx.lineWidth = 0.85;
-            ctx.beginPath();
-            ctx.moveTo(x1, y1);
-            ctx.lineTo(x2, y2);
-            ctx.stroke();
-            ctx.restore();
-          }
-        }
-
-        // 2. Cursor to Node laser data links
-        if (mouseActive) {
-          const cdx = mx - x1;
-          const cdy = my - y1;
-          const cdist = Math.sqrt(cdx * cdx + cdy * cdy);
-
-          if (cdist < CURSOR_CONNECT_DIST) {
-            const cAlpha = (1 - cdist / CURSOR_CONNECT_DIST) * 0.55;
-            ctx.save();
-            ctx.strokeStyle = colors.cursorLineColor;
-            ctx.globalAlpha = cAlpha;
-            ctx.lineWidth = 1.0;
-            ctx.beginPath();
-            ctx.moveTo(mx, my);
-            ctx.lineTo(x1, y1);
-            ctx.stroke();
-
-            // Moving data packet light along the laser connection line
-            const packetPos = (Date.now() * 0.002 + i * 0.15) % 1;
-            const px = mx + (x1 - mx) * packetPos;
-            const py = my + (y1 - my) * packetPos;
-            ctx.beginPath();
-            ctx.arc(px, py, 1.5, 0, Math.PI * 2);
-            ctx.fillStyle = colors.nodeLight;
-            ctx.globalAlpha = cAlpha * 1.2;
-            ctx.fill();
-
-            ctx.restore();
-          }
-        }
-      }
-    }
-
-    // Main animation loop
-    function render() {
-      if (!isVisible) return;
-
-      // Smooth mouse interpolation (lerp)
-      if (mouse.active) {
-        mouse.x += (mouse.targetX - mouse.x) * 0.12;
-        mouse.y += (mouse.targetY - mouse.y) * 0.12;
-      }
-
-      ctx.clearRect(0, 0, width, height);
-
-      // 1. Draw Subtle Grid & Ambient Spotlight
-      drawDataGrid(ctx, width, height, mouse.x, mouse.y, mouse.active);
-
-      // 2. Update Node Positions
-      for (let i = 0; i < nodes.length; i++) {
-        nodes[i].update(width, height, mouse.x, mouse.y, mouse.active);
-      }
-
-      // 3. Draw Constellation Connections
-      drawConnections(ctx, mouse.x, mouse.y, mouse.active);
-
-      // 4. Render Data Points
-      for (let i = 0; i < nodes.length; i++) {
-        nodes[i].draw(ctx);
-      }
-
-      animationFrameId = requestAnimationFrame(render);
-    }
-
-    // Mouse & Touch Listeners
-    function handleMouseMove(e) {
+    function onMouseMove(e) {
       const rect = container.getBoundingClientRect();
-      const clientX = e.clientX;
-      const clientY = e.clientY;
-
-      if (
-        clientX >= rect.left - 40 &&
-        clientX <= rect.right + 40 &&
-        clientY >= rect.top - 40 &&
-        clientY <= rect.bottom + 40
-      ) {
-        mouse.targetX = clientX - rect.left;
-        mouse.targetY = clientY - rect.top;
-        if (!mouse.active) {
-          mouse.x = mouse.targetX;
-          mouse.y = mouse.targetY;
-          mouse.active = true;
-        }
-      } else {
-        mouse.active = false;
-      }
+      mouse.targetX = e.clientX - rect.left;
+      mouse.targetY = e.clientY - rect.top;
+      mouse.active = true;
     }
 
-    function handleMouseLeave() {
+    function onMouseLeave() {
       mouse.active = false;
+      mouse.targetX = -1000;
+      mouse.targetY = -1000;
     }
 
-    function handleTouchMove(e) {
-      if (e.touches && e.touches.length > 0) {
-        const touch = e.touches[0];
-        const rect = container.getBoundingClientRect();
-        if (
-          touch.clientX >= rect.left &&
-          touch.clientX <= rect.right &&
-          touch.clientY >= rect.top &&
-          touch.clientY <= rect.bottom
-        ) {
-          mouse.targetX = touch.clientX - rect.left;
-          mouse.targetY = touch.clientY - rect.top;
-          if (!mouse.active) {
-            mouse.x = mouse.targetX;
-            mouse.y = mouse.targetY;
-            mouse.active = true;
-          }
-        }
-      }
-    }
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    document.addEventListener("mouseleave", onMouseLeave, { passive: true });
 
-    function handleTouchEnd() {
-      mouse.active = false;
-    }
-
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    window.addEventListener("mouseleave", handleMouseLeave);
-    window.addEventListener("touchmove", handleTouchMove, { passive: true });
-    window.addEventListener("touchend", handleTouchEnd);
-
-    // Resize observer
     const resizeObserver = new ResizeObserver(() => {
       resize();
     });
     resizeObserver.observe(container);
 
-    // Theme change observer
-    const themeObserver = new MutationObserver(() => {
-      updateColors();
+    const intersectionObserver = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+      if (isVisible && !animationFrameId) {
+        loop();
+      }
     });
-    themeObserver.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-
-    // Intersection observer to pause loop when Hero is out of viewport
-    const intersectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          isVisible = entry.isIntersecting;
-          if (isVisible) {
-            if (!animationFrameId) {
-              animationFrameId = requestAnimationFrame(render);
-            }
-          } else {
-            if (animationFrameId) {
-              cancelAnimationFrame(animationFrameId);
-              animationFrameId = null;
-            }
-          }
-        });
-      },
-      { threshold: 0.05 }
-    );
     intersectionObserver.observe(container);
 
-    // Initial setup
-    resize();
-    animationFrameId = requestAnimationFrame(render);
+    function draw() {
+      if (!ctx || width === 0 || height === 0) return;
+      ctx.clearRect(0, 0, width, height);
 
-    // Cleanup on page transitions
-    document.addEventListener("astro:before-swap", () => {
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseleave", handleMouseLeave);
-      window.removeEventListener("touchmove", handleTouchMove);
-      window.removeEventListener("touchend", handleTouchEnd);
-      resizeObserver.disconnect();
-      themeObserver.disconnect();
-      intersectionObserver.disconnect();
+      const isDark = document.documentElement.classList.contains("dark");
+      const gridStep = 72; // Cartesian grid pitch
+      
+      const gridLineColor = isDark ? "rgba(148, 163, 184, 0.04)" : "rgba(15, 23, 42, 0.03)";
+      const crosshairColor = isDark ? "rgba(148, 163, 184, 0.1)" : "rgba(15, 23, 42, 0.1)";
+      const activeCrosshairColor = isDark ? "rgba(96, 165, 250, 0.45)" : "rgba(37, 99, 235, 0.5)";
+      const activeGlow = isDark ? "rgba(96, 165, 250, 0.025)" : "rgba(37, 99, 235, 0.02)";
+
+      // 1. Draw subtle Cartesian Grid Lines
+      ctx.beginPath();
+      ctx.strokeStyle = gridLineColor;
+      ctx.lineWidth = 1;
+
+      for (let x = 0; x <= width; x += gridStep) {
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+      }
+      for (let y = 0; y <= height; y += gridStep) {
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+      }
+      ctx.stroke();
+
+      // 2. Draw Crosshair Intersection Markers & Proximity Telemetry
+      const crossSize = 3.5;
+      const mouseRadius = 180;
+      const now = Date.now();
+
+      // 3. Subtle Ambient Telemetry Scanline (Glides vertically down the grid every 9s)
+      const scanPeriod = 9000;
+      const scanProgress = (now % scanPeriod) / scanPeriod;
+      const scanY = scanProgress * height;
+      
+      const scanGrad = ctx.createLinearGradient(0, scanY - 35, 0, scanY + 35);
+      scanGrad.addColorStop(0, "transparent");
+      scanGrad.addColorStop(0.5, isDark ? "rgba(96, 165, 250, 0.035)" : "rgba(37, 99, 235, 0.025)");
+      scanGrad.addColorStop(1, "transparent");
+      
+      ctx.fillStyle = scanGrad;
+      ctx.fillRect(0, scanY - 35, width, 70);
+
+      ctx.beginPath();
+      ctx.strokeStyle = isDark ? "rgba(96, 165, 250, 0.09)" : "rgba(37, 99, 235, 0.06)";
+      ctx.lineWidth = 1;
+      ctx.moveTo(0, scanY);
+      ctx.lineTo(width, scanY);
+      ctx.stroke();
+
+      for (let x = 0; x <= width; x += gridStep) {
+        for (let y = 0; y <= height; y += gridStep) {
+          const dx = x - mouse.x;
+          const dy = y - mouse.y;
+          const dist = Math.hypot(dx, dy);
+
+          if (mouse.active && dist < mouseRadius) {
+            const factor = 1 - dist / mouseRadius;
+            
+            // Subtle ambient cell highlight near cursor
+            ctx.fillStyle = activeGlow;
+            ctx.fillRect(x - gridStep / 2, y - gridStep / 2, gridStep, gridStep);
+
+            // Active crosshair
+            ctx.strokeStyle = activeCrosshairColor;
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(x - crossSize - factor * 2, y);
+            ctx.lineTo(x + crossSize + factor * 2, y);
+            ctx.moveTo(x, y - crossSize - factor * 2);
+            ctx.lineTo(x, y + crossSize + factor * 2);
+            ctx.stroke();
+          } else {
+            // Passive resting crosshair (every 2nd intersection for visual breathing room)
+            if ((x / gridStep + y / gridStep) % 2 === 0) {
+              ctx.strokeStyle = crosshairColor;
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(x - crossSize, y);
+              ctx.lineTo(x + crossSize, y);
+              ctx.moveTo(x, y - crossSize);
+              ctx.lineTo(x, y + crossSize);
+              ctx.stroke();
+            }
+          }
+        }
+      }
+    }
+
+    function loop() {
+      if (!isVisible) {
+        animationFrameId = null;
+        return;
+      }
+
+      // Smooth mouse interpolation
+      if (mouse.active) {
+        mouse.x += (mouse.targetX - mouse.x) * 0.15;
+        mouse.y += (mouse.targetY - mouse.y) * 0.15;
+      } else {
+        mouse.x = -1000;
+        mouse.y = -1000;
+      }
+
+      draw();
+      animationFrameId = requestAnimationFrame(loop);
+    }
+
+    resize();
+    loop();
+
+    // Re-draw on theme toggle
+    const observer = new MutationObserver(() => {
+      draw();
     });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
   })();
 </script>

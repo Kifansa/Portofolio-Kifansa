@@ -8,7 +8,7 @@
   aria-label="Scroll to top"
   title="Scroll to top"
   class="fixed bottom-6 right-6 z-40 p-0 w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center cursor-pointer shadow-lg transition-all duration-300 opacity-0 pointer-events-none translate-y-5 scale-90 group focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 touch-manipulation"
-  style="background: color-mix(in srgb, var(--bg-surface) 85%, transparent); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--border); box-shadow: var(--shadow-lg);"
+  style="background: color-mix(in srgb, var(--bg-card) 65%, transparent); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border: 1px solid color-mix(in srgb, var(--border) 50%, transparent); box-shadow: var(--shadow-lg), inset 0 1px 0 color-mix(in srgb, rgba(255,255,255,0.1) 40%, transparent);"
 >
   <!-- Circular SVG Progress Ring -->
   <svg
@@ -68,8 +68,8 @@
 
   #scroll-to-top:hover {
     border-color: var(--accent);
-    box-shadow: 0 10px 25px -3px var(--accent-glow), var(--shadow-lg);
-    transform: translateY(-3px) scale(1.05);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
   }
 
   #scroll-to-top:active {
