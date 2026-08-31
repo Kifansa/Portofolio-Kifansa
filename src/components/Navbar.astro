@@ -143,14 +143,18 @@ const navLinks = [
       mobileBtn.setAttribute("aria-expanded", "false");
     }
 
-    // Scroll effect
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
+    // High-performance scroll effect with state-diff guard
+    let isScrolled = false;
+    function checkScroll() {
+      const shouldScroll = window.scrollY > 50;
+      if (shouldScroll !== isScrolled) {
+        isScrolled = shouldScroll;
+        navbar.classList.toggle("scrolled", isScrolled);
       }
-    });
+    }
+
+    window.addEventListener("scroll", checkScroll, { passive: true });
+    checkScroll();
 
     // Mobile menu toggle
     mobileBtn.addEventListener("click", (e) => {

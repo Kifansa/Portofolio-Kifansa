@@ -5,9 +5,9 @@
 /* ========== Theme Colors (Deep Frosted Glass Optical Architecture) ========== */
 :root {
   --bg: #FAFAFA;
-  --bg-surface: rgba(255, 255, 255, 0.82);
-  --bg-surface-hover: rgba(244, 244, 245, 0.95);
-  --bg-card: rgba(255, 255, 255, 0.78);
+  --bg-surface: rgba(255, 255, 255, 0.75);
+  --bg-surface-hover: rgba(244, 244, 245, 0.90);
+  --bg-card: rgba(255, 255, 255, 0.55);
   --accent: #09090B;
   --accent-light: #27272A;
   --accent-secondary: #18181B;
@@ -33,9 +33,9 @@
 
 .dark {
   --bg: #09090B;
-  --bg-surface: rgba(18, 18, 21, 0.82);
-  --bg-surface-hover: rgba(28, 28, 32, 0.95);
-  --bg-card: rgba(18, 18, 21, 0.78);
+  --bg-surface: rgba(18, 18, 21, 0.75);
+  --bg-surface-hover: rgba(28, 28, 32, 0.90);
+  --bg-card: rgba(18, 18, 21, 0.48);
   --accent: #FAFAFA;
   --accent-light: #F4F4F5;
   --accent-secondary: #E4E4E7;
@@ -155,29 +155,29 @@ textarea:focus-visible {
 /* ========== Scroll Reveal Animations ========== */
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(28px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .reveal-left {
   opacity: 0;
-  transform: translateX(-24px);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-28px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .reveal-right {
   opacity: 0;
-  transform: translateX(24px);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(28px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .reveal-scale {
   opacity: 0;
-  transform: scale(0.96);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px) scale(0.96);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -187,14 +187,15 @@ textarea:focus-visible {
 .reveal-scale.revealed {
   opacity: 1;
   transform: translateY(0) translateX(0) scale(1);
+  will-change: auto;
 }
 
 .reveal-delay-1 { transition-delay: 0.05s; }
-.reveal-delay-2 { transition-delay: 0.1s; }
-.reveal-delay-3 { transition-delay: 0.15s; }
-.reveal-delay-4 { transition-delay: 0.2s; }
-.reveal-delay-5 { transition-delay: 0.25s; }
-.reveal-delay-6 { transition-delay: 0.3s; }
+.reveal-delay-2 { transition-delay: 0.12s; }
+.reveal-delay-3 { transition-delay: 0.19s; }
+.reveal-delay-4 { transition-delay: 0.26s; }
+.reveal-delay-5 { transition-delay: 0.33s; }
+.reveal-delay-6 { transition-delay: 0.40s; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal,
@@ -273,8 +274,20 @@ textarea:focus-visible {
 .badge-slate,
 .profile-frame,
 .glass-panel {
-  -webkit-backdrop-filter: blur(24px) saturate(190%);
-  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(36px) saturate(200%);
+  backdrop-filter: blur(36px) saturate(200%);
+}
+
+@media (max-width: 640px) {
+  .card,
+  .kpi-card,
+  .btn-secondary,
+  .badge-slate,
+  .profile-frame,
+  .glass-panel {
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+  }
 }
 
 /* ========== KPI Stat Card (Matching Secondary Button Surface & Aesthetic) ========== */
@@ -286,7 +299,9 @@ textarea:focus-visible {
   padding: 1.1rem 0.95rem;
   box-shadow: var(--shadow);
   overflow: hidden;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+  -webkit-backdrop-filter: blur(36px) saturate(200%);
+  backdrop-filter: blur(36px) saturate(200%);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
 .kpi-card::before {
@@ -304,6 +319,7 @@ textarea:focus-visible {
   transform: translateY(-2px);
   border-color: var(--text);
   box-shadow: var(--shadow-md);
+  background: var(--bg-surface-hover);
 }
 
 /* ========== Profile Photo Frame (Solid Architectural Edge) ========== */
@@ -315,6 +331,8 @@ textarea:focus-visible {
   border: 1px solid var(--border);
   box-shadow: var(--shadow-lg);
   overflow: hidden;
+  -webkit-backdrop-filter: blur(36px) saturate(200%);
+  backdrop-filter: blur(36px) saturate(200%);
 }
 
 /* ========== Cards (Solid Clean Monochrome) ========== */
@@ -324,6 +342,8 @@ textarea:focus-visible {
   border-radius: 1rem;
   padding: 1.25rem;
   box-shadow: var(--shadow);
+  -webkit-backdrop-filter: blur(36px) saturate(200%);
+  backdrop-filter: blur(36px) saturate(200%);
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
@@ -387,6 +407,8 @@ textarea:focus-visible {
   font-weight: 600;
   padding: 0.75rem 1.4rem;
   border-radius: 9999px;
+  -webkit-backdrop-filter: blur(36px) saturate(200%);
+  backdrop-filter: blur(36px) saturate(200%);
   transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
@@ -410,12 +432,9 @@ textarea:focus-visible {
 .btn-secondary:hover {
   border-color: var(--text);
   color: var(--text);
+  background: var(--bg-surface-hover);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-}
-
-.btn-secondary:active {
-  transform: translateY(0) scale(0.98);
 }
 
 .btn-secondary:active {

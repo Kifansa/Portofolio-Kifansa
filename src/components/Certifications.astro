@@ -21,73 +21,75 @@ import { certifications } from "../data/certifications";
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
       {
         certifications.map((cert, idx) => (
-          <div
-            class={`reveal-scale reveal-delay-${(idx % 3) + 1} card rounded-3xl group overflow-hidden p-0 flex flex-col justify-between transition-all duration-300`}
-            style="border-color: color-mix(in srgb, var(--border) 60%, transparent);"
-          >
-            <div>
-              {cert.image && (
-                <div class="relative overflow-hidden aspect-[16/10] bg-slate-950/40">
-                  <img
-                    src={cert.image}
-                    alt={`${cert.name} certificate`}
-                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  {cert.courses && (
-                    <span
-                      class="absolute top-3.5 right-3.5 px-3 py-1 text-xs font-semibold rounded-full border border-slate-700/80 bg-slate-950/90 text-white shadow-sm"
-                    >
-                      {cert.courses} Specialized Courses
-                    </span>
-                  )}
-                  {cert.credentialId && (
-                    <span
-                      class="absolute top-3.5 right-3.5 px-3 py-1 text-xs font-semibold rounded-full border border-slate-700/80 bg-slate-950/90 text-white shadow-sm"
-                    >
-                      BNSP Certified
-                    </span>
-                  )}
-                </div>
-              )}
+          <div class={`reveal reveal-delay-${Math.min(idx + 1, 6)}`}>
+            <div
+              class="card rounded-3xl group overflow-hidden p-0 flex flex-col justify-between h-full transition-all duration-300 hover:scale-[1.01] shadow-xs"
+              style="border-color: color-mix(in srgb, var(--border) 60%, transparent);"
+            >
+              <div>
+                {cert.image && (
+                  <div class="relative overflow-hidden aspect-[16/10] bg-slate-950/40">
+                    <img
+                      src={cert.image}
+                      alt={`${cert.name} certificate`}
+                      class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    {cert.courses && (
+                      <span
+                        class="absolute top-3.5 right-3.5 px-3 py-1 text-xs font-semibold rounded-full border border-slate-700/80 bg-slate-950/90 text-white shadow-sm"
+                      >
+                        {cert.courses} Specialized Courses
+                      </span>
+                    )}
+                    {cert.credentialId && (
+                      <span
+                        class="absolute top-3.5 right-3.5 px-3 py-1 text-xs font-semibold rounded-full border border-slate-700/80 bg-slate-950/90 text-white shadow-sm"
+                      >
+                        BNSP Certified
+                      </span>
+                    )}
+                  </div>
+                )}
 
-              <div class="p-5 sm:p-6">
-                <div class="mb-2">
-                  <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--accent);">
-                    {cert.issuer}
-                  </span>
+                <div class="p-5 sm:p-6">
+                  <div class="mb-2">
+                    <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--accent);">
+                      {cert.issuer}
+                    </span>
+                  </div>
+                  <h3 class="font-heading font-bold text-base sm:text-lg mb-2 leading-snug" style="color: var(--text);">
+                    {cert.name}
+                  </h3>
+                  <p class="text-xs sm:text-sm font-medium mb-4" style="color: var(--text-muted);">
+                    Completed: {cert.date}
+                  </p>
                 </div>
-                <h3 class="font-heading font-bold text-base sm:text-lg mb-2 leading-snug" style="color: var(--text);">
-                  {cert.name}
-                </h3>
-                <p class="text-xs sm:text-sm font-medium mb-4" style="color: var(--text-muted);">
-                  Completed: {cert.date}
-                </p>
               </div>
-            </div>
 
-            <div class="p-6 pt-0">
-              {cert.verifyUrl ? (
-                <a
-                  href={cert.verifyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn-secondary w-full justify-center text-xs sm:text-sm py-2.5 px-4 font-semibold shadow-sm"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                  Verify Certificate
-                </a>
-              ) : cert.image ? (
-                <a
-                  href={cert.image}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn-secondary w-full justify-center text-xs sm:text-sm py-2.5 px-4 font-semibold shadow-sm"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                  View Credential
-                </a>
-              ) : null}
+              <div class="p-6 pt-0">
+                {cert.verifyUrl ? (
+                  <a
+                    href={cert.verifyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-secondary w-full justify-center text-xs sm:text-sm py-2.5 px-4 font-semibold shadow-sm"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    Verify Certificate
+                  </a>
+                ) : cert.image ? (
+                  <a
+                    href={cert.image}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-secondary w-full justify-center text-xs sm:text-sm py-2.5 px-4 font-semibold shadow-sm"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                    View Credential
+                  </a>
+                ) : null}
+              </div>
             </div>
           </div>
         ))

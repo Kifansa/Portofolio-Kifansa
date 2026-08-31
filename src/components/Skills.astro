@@ -22,10 +22,11 @@ import { skillCategories } from "../data/skills";
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
       {
         skillCategories.map((category, catIdx) => (
-          <div
-            class={`reveal-scale reveal-delay-${catIdx + 1} card rounded-3xl group p-5 sm:p-7 flex flex-col justify-between transition-all duration-300`}
-            style="border-color: color-mix(in srgb, var(--border) 75%, transparent);"
-          >
+          <div class={`reveal reveal-delay-${catIdx + 1}`}>
+            <div
+              class="card rounded-3xl group p-5 sm:p-7 flex flex-col justify-between h-full transition-all duration-300 hover:scale-[1.01] shadow-xs"
+              style="border-color: color-mix(in srgb, var(--border) 75%, transparent);"
+            >
             <div>
               <!-- Category Header -->
               <div class="flex items-start justify-between gap-3 pb-5 mb-5 border-b" style="border-color: var(--border);">
@@ -288,6 +289,7 @@ import { skillCategories } from "../data/skills";
               </div>
             </div>
           </div>
+        </div>
         ))
       }
     </div>
