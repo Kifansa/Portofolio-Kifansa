@@ -272,10 +272,9 @@ textarea:focus-visible {
 .btn-secondary,
 .badge-slate,
 .profile-frame,
-.navbar-container,
 .glass-panel {
-  backdrop-filter: blur(24px) saturate(190%);
   -webkit-backdrop-filter: blur(24px) saturate(190%);
+  backdrop-filter: blur(24px) saturate(190%);
 }
 
 /* ========== KPI Stat Card (Matching Secondary Button Surface & Aesthetic) ========== */
