@@ -51,24 +51,19 @@ import { skillCategories } from "../data/skills";
                     <h3 class="font-heading font-bold text-base sm:text-lg tracking-tight" style="color: var(--text);">
                       {category.name}
                     </h3>
-                    <p class="text-xs mt-0.5 leading-snug" style="color: var(--text-muted);">
-                      {category.subtitle}
-                    </p>
                   </div>
                 </div>
               </div>
 
-              <!-- Modern Minimalist Centered Skill Tiles Grid (Logo Center Above Name Only) -->
-              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-3.5">
+              <!-- Modern Minimalist Borderless Skill Grid -->
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3.5">
                 {category.skills.map((skill) => (
                   <div
-                    class="group/skill flex flex-col items-center justify-center text-center p-3.5 sm:p-4 rounded-2xl border transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-[var(--accent)] cursor-default min-h-[110px] sm:min-h-[120px]"
-                    style="background: var(--bg-card); border-color: var(--border); box-shadow: var(--shadow);"
+                    class="group/skill flex flex-col items-center justify-center text-center p-2.5 sm:p-3 transition-all duration-200 hover:-translate-y-0.5 cursor-default"
                   >
-                    <!-- Tactile Button-Style Centered Logo Container -->
+                    <!-- Clean Borderless Logo Container -->
                     <div
-                      class="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl shrink-0 flex items-center justify-center mb-2.5 transition-all duration-200 group-hover/skill:scale-105 group-hover/skill:border-[var(--accent)] shadow-xs"
-                      style="background: var(--bg-surface); border: 1px solid var(--border);"
+                      class="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center mb-1.5 transition-transform duration-200 group-hover/skill:scale-110"
                     >
                       {/* 1. Python */}
                       {skill.icon === "python" && (
@@ -157,7 +152,7 @@ import { skillCategories } from "../data/skills";
                         </svg>
                       )}
 
-                      {/* 10. Looker Studio / Data Studio */}
+                      {/* 10. Looker Studio */}
                       {skill.icon === "datastudio" && (
                         <svg class="w-7 h-7 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 24 24">
                           <rect x="3" y="12" width="4.5" height="9" rx="2" fill="#4285F4"/>
@@ -284,8 +279,8 @@ import { skillCategories } from "../data/skills";
                       )}
                     </div>
 
-                    <!-- Tool Name Only (Centered, Clean Typography) -->
-                    <span class="font-heading font-semibold text-xs sm:text-sm text-center leading-snug group-hover/skill:text-accent transition-colors" style="color: var(--text);">
+                    <!-- Tool Name Only (Centered, Clean Typography, Scaled Slightly Smaller) -->
+                    <span class="font-heading font-medium text-[11px] sm:text-xs text-center leading-tight tracking-tight text-[var(--text)] group-hover/skill:opacity-80 transition-opacity">
                       {skill.name}
                     </span>
                   </div>

@@ -136,7 +136,7 @@ const schemaJson = {
     <meta name="twitter:image:alt" content="Kifansa Naufal Fadhlurrohman - Data Analyst Portfolio" />
 
     <!-- Mobile App & Theme Styling -->
-    <meta name="theme-color" content="#030712" />
+    <meta name="theme-color" content="#09090B" />
     <meta name="application-name" content="Kifansa Portfolio" />
     <meta name="apple-mobile-web-app-title" content="Kifansa Portfolio" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,17 +148,18 @@ const schemaJson = {
     <meta name="geo.placename" content="Surabaya, Indonesia" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/images/logo.png" />
-    <link rel="apple-touch-icon" href="/images/logo.png" />
+    <link rel="icon" type="image/png" href="/images/logo.webp" />
+    <link rel="apple-touch-icon" href="/images/logo.webp" />
 
-    <!-- Fonts preconnect -->
+    <!-- Fonts preconnect & stylesheet -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <!-- Structured Data (JSON-LD) for Google Knowledge Graph & Rich Results -->
     <script type="application/ld+json" set:html={JSON.stringify(schemaJson)} />
   </head>
-  <body class="min-h-screen antialiased selection:bg-sky-500 selection:text-white">
+  <body class="min-h-screen antialiased selection:bg-neutral-900 selection:text-white dark:selection:bg-white dark:selection:text-black">
     <slot />
     <ScrollToTop />
 

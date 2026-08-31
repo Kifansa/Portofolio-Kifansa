@@ -136,7 +136,7 @@ export default function ContactForm() {
           maxLength={100}
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="w-full px-4 py-2.5 rounded-xl border text-base sm:text-sm outline-none transition-all duration-200 text-center sm:text-left placeholder:text-center sm:placeholder:text-left shadow-sm min-w-0"
+          className="w-full px-4 py-2.5 rounded-xl border text-base sm:text-sm outline-none transition-all duration-200 text-left placeholder:text-left shadow-sm min-w-0"
           style={inputStyle}
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -145,7 +145,7 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-semibold mb-1.5 text-center sm:text-left" style={{ color: "var(--text-muted)" }}>
+        <label htmlFor="email" className="block text-sm font-semibold mb-1.5 text-left" style={{ color: "var(--text-muted)" }}>
           Email Address <span className="text-red-400" aria-hidden="true">*</span>
         </label>
         <input
@@ -157,7 +157,7 @@ export default function ContactForm() {
           maxLength={120}
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="w-full px-4 py-2.5 rounded-xl border text-base sm:text-sm outline-none transition-all duration-200 text-center sm:text-left placeholder:text-center sm:placeholder:text-left shadow-sm min-w-0"
+          className="w-full px-4 py-2.5 rounded-xl border text-base sm:text-sm outline-none transition-all duration-200 text-left placeholder:text-left shadow-sm min-w-0"
           style={inputStyle}
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -167,7 +167,7 @@ export default function ContactForm() {
 
       <div>
         <div className="flex items-center justify-between mb-1.5">
-          <label htmlFor="message" className="block text-sm font-semibold text-center sm:text-left" style={{ color: "var(--text-muted)" }}>
+          <label htmlFor="message" className="block text-sm font-semibold text-left" style={{ color: "var(--text-muted)" }}>
             Message <span className="text-red-400" aria-hidden="true">*</span>
           </label>
           <span className="text-[11px] font-medium" style={{ color: "var(--text-muted)" }}>
@@ -182,7 +182,7 @@ export default function ContactForm() {
           maxLength={2000}
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          className="w-full px-4 py-2.5 rounded-xl border text-base sm:text-sm outline-none resize-none transition-all duration-200 text-center sm:text-left placeholder:text-center sm:placeholder:text-left shadow-sm min-w-0"
+          className="w-full px-4 py-2.5 rounded-xl border text-base sm:text-sm outline-none resize-none transition-all duration-200 text-left placeholder:text-left shadow-sm min-w-0"
           style={inputStyle}
           onFocus={handleFocus}
           onBlur={handleBlur}

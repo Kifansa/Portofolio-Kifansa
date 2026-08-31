@@ -37,7 +37,7 @@ import { experiences } from "../data/experience";
               />
 
               {/* Card */}
-              <div class="card rounded-3xl p-4 sm:p-6 transition-all duration-300 hover:scale-[1.01] shadow-sm" style="border-color: color-mix(in srgb, var(--border) 60%, transparent);">
+              <div class="card rounded-3xl p-4 sm:p-6 transition-all duration-300 hover:scale-[1.01] shadow-xs">
                 <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                   <div>
                     <h3 class="font-heading font-bold text-base sm:text-lg" style="color: var(--text);">
@@ -48,11 +48,11 @@ import { experiences } from "../data/experience";
                     </p>
                   </div>
                   <span
-                    class="shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full"
-                    style="color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--bg-card)); border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));"
+                    class="shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full border"
+                    style="color: var(--text); background: var(--bg-surface); border-color: var(--border);"
                   >
                     {exp.period.includes("Present") ? (
-                      <span class="w-2 h-2 rounded-full animate-pulse" style="background: var(--accent);"></span>
+                      <span class="w-2 h-2 rounded-full animate-pulse" style="background: var(--text);"></span>
                     ) : (
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                     )}
@@ -63,7 +63,7 @@ import { experiences } from "../data/experience";
                 <ul class="space-y-2 mt-3">
                   {exp.highlights.map((h) => (
                     <li class="flex gap-2.5 text-xs sm:text-sm leading-relaxed" style="color: var(--text-muted);">
-                      <span class="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full" style="background: var(--accent);" />
+                      <span class="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full" style="background: var(--text);" />
                       <span>{h}</span>
                     </li>
                   ))}

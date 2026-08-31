@@ -3,7 +3,7 @@
 ---
 
 <div id="data-analyst-bg-container" class="absolute inset-0 overflow-hidden pointer-events-none select-none z-0">
-  <canvas id="analytical-canvas" class="w-full h-full block opacity-75 dark:opacity-60 transition-opacity duration-500"></canvas>
+  <canvas id="analytical-canvas" class="w-full h-full block opacity-90 dark:opacity-85 transition-opacity duration-500"></canvas>
 </div>
 
 <script is:inline>
@@ -72,10 +72,10 @@
       const isDark = document.documentElement.classList.contains("dark");
       const gridStep = 72; // Cartesian grid pitch
       
-      const gridLineColor = isDark ? "rgba(148, 163, 184, 0.04)" : "rgba(15, 23, 42, 0.03)";
-      const crosshairColor = isDark ? "rgba(148, 163, 184, 0.1)" : "rgba(15, 23, 42, 0.1)";
-      const activeCrosshairColor = isDark ? "rgba(96, 165, 250, 0.45)" : "rgba(37, 99, 235, 0.5)";
-      const activeGlow = isDark ? "rgba(96, 165, 250, 0.025)" : "rgba(37, 99, 235, 0.02)";
+      const gridLineColor = isDark ? "rgba(255, 255, 255, 0.065)" : "rgba(0, 0, 0, 0.055)";
+      const crosshairColor = isDark ? "rgba(255, 255, 255, 0.18)" : "rgba(0, 0, 0, 0.15)";
+      const activeCrosshairColor = isDark ? "rgba(255, 255, 255, 0.75)" : "rgba(0, 0, 0, 0.75)";
+      const activeGlow = isDark ? "rgba(255, 255, 255, 0.045)" : "rgba(0, 0, 0, 0.035)";
 
       // 1. Draw subtle Cartesian Grid Lines
       ctx.beginPath();
@@ -102,17 +102,17 @@
       const scanProgress = (now % scanPeriod) / scanPeriod;
       const scanY = scanProgress * height;
       
-      const scanGrad = ctx.createLinearGradient(0, scanY - 35, 0, scanY + 35);
+      const scanGrad = ctx.createLinearGradient(0, scanY - 40, 0, scanY + 40);
       scanGrad.addColorStop(0, "transparent");
-      scanGrad.addColorStop(0.5, isDark ? "rgba(96, 165, 250, 0.035)" : "rgba(37, 99, 235, 0.025)");
+      scanGrad.addColorStop(0.5, isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.045)");
       scanGrad.addColorStop(1, "transparent");
       
       ctx.fillStyle = scanGrad;
-      ctx.fillRect(0, scanY - 35, width, 70);
+      ctx.fillRect(0, scanY - 40, width, 80);
 
       ctx.beginPath();
-      ctx.strokeStyle = isDark ? "rgba(96, 165, 250, 0.09)" : "rgba(37, 99, 235, 0.06)";
-      ctx.lineWidth = 1;
+      ctx.strokeStyle = isDark ? "rgba(255, 255, 255, 0.18)" : "rgba(0, 0, 0, 0.13)";
+      ctx.lineWidth = 1.2;
       ctx.moveTo(0, scanY);
       ctx.lineTo(width, scanY);
       ctx.stroke();
@@ -177,11 +177,5 @@
 
     resize();
     loop();
-
-    // Re-draw on theme toggle
-    const observer = new MutationObserver(() => {
-      draw();
-    });
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
   })();
 </script>

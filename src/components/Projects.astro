@@ -18,31 +18,44 @@ import { projects } from "../data/projects";
       </p>
     </div>
 
-    <!-- Projects List: Minimalist & Clean on Main Page -->
-    <div class="space-y-10 sm:space-y-14">
+    <!-- Projects List: Modern Minimalist Borderless Presentation -->
+    <div class="space-y-16 sm:space-y-24">
       {
         projects.map((project, pIdx) => (
           <div
             id={project.id}
-            class="reveal reveal-delay-2 card rounded-3xl p-6 sm:p-8 lg:p-10 border transition-all duration-300 relative scroll-mt-24"
-            style="border-color: color-mix(in srgb, var(--border) 60%, transparent);"
+            class="reveal reveal-delay-2 transition-all duration-300 relative scroll-mt-24"
           >
-            <div class="grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
-              <!-- Left: Dashboard Visual Preview -->
-              <div class="lg:col-span-6">
-                <div class="relative rounded-2xl overflow-hidden border shadow-sm cursor-pointer open-project-details-btn transition-transform duration-300 hover:scale-[1.01]" data-project-idx={pIdx} style="background: var(--bg-surface); border-color: var(--border);">
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              <!-- Visual Preview (Alternates: Left on even, Right on odd) -->
+              <div class={`lg:col-span-6 ${pIdx % 2 === 1 ? "lg:order-2" : "lg:order-1"}`}>
+                <div class="relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer open-project-details-btn transition-all duration-300 hover:scale-[1.015] group" data-project-idx={pIdx} style="background: var(--bg-surface);">
                   <img
                     src={project.slides[0].image}
                     alt={project.title}
-                    class="w-full aspect-[16/10] object-cover object-top block"
+                    class="w-full aspect-[16/10] object-cover object-top block transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
+                  <!-- Subtle Dark/Light Glass Overlay on Hover -->
+                  <div class="absolute inset-0 bg-black/10 dark:bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 </div>
               </div>
 
-              <!-- Right: Project Title, Concise Summary, & Action Buttons -->
-              <div class="lg:col-span-6 flex flex-col justify-center space-y-4">
-                <h3 class="font-heading text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight" style="color: var(--text);">
+              <!-- Project Title, Concise Summary, & Action Buttons (Alternates: Right on even, Left on odd) -->
+              <div class={`lg:col-span-6 flex flex-col justify-center space-y-4 sm:space-y-5 ${pIdx % 2 === 1 ? "lg:order-1" : "lg:order-2"}`}>
+                <!-- Badge -->
+                <div class="flex items-center gap-2">
+                  <span class="text-[11px] sm:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border" style="color: var(--text); border-color: var(--border); background: var(--bg-surface);">
+                    {project.badge}
+                  </span>
+                  {project.teamBadge && (
+                    <span class="text-[11px] sm:text-xs font-semibold px-2.5 py-0.5 rounded-full" style="color: var(--text-muted);">
+                      {project.teamBadge}
+                    </span>
+                  )}
+                </div>
+
+                <h3 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight" style="color: var(--text);">
                   {project.title}
                 </h3>
 
@@ -100,15 +113,15 @@ import { projects } from "../data/projects";
             <div class="space-y-1 pr-4">
               <div class="flex flex-wrap items-center gap-2 mb-1">
                 <span
-                  class="inline-flex items-center px-3 py-0.5 text-xs font-bold uppercase tracking-wider rounded-full"
-                  style="color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--bg-card)); border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));"
+                  class="inline-flex items-center px-3 py-0.5 text-xs font-bold uppercase tracking-wider rounded-full border"
+                  style="color: var(--text); background: var(--bg-surface); border-color: var(--border);"
                 >
                   {project.badge}
                 </span>
                 {project.teamBadge && (
                   <span
-                    class="inline-flex items-center gap-1 px-3 py-0.5 text-xs font-semibold rounded-full"
-                    style="color: var(--accent-tertiary); background: color-mix(in srgb, var(--accent-tertiary) 8%, var(--bg-card)); border: 1px solid color-mix(in srgb, var(--accent-tertiary) 20%, var(--border));"
+                    class="inline-flex items-center gap-1 px-3 py-0.5 text-xs font-semibold rounded-full border"
+                    style="color: var(--text-muted); background: var(--bg-surface); border-color: var(--border);"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                     {project.teamBadge}
@@ -121,11 +134,11 @@ import { projects } from "../data/projects";
             </div>
             <button
               type="button"
-              class="close-modal-btn p-2 rounded-xl border hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer shrink-0"
-              style="border-color: var(--border); color: var(--text);"
+              class="close-modal-btn p-2 rounded-xl border border-red-500/30 bg-red-500/10 text-red-500 dark:text-red-400 hover:bg-red-500/20 hover:border-red-500/50 transition-all duration-200 cursor-pointer shrink-0 shadow-xs hover:scale-105"
+              style="border-color: rgba(239, 68, 68, 0.35);"
               aria-label="Close project details"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
           </div>
 
@@ -138,7 +151,7 @@ import { projects } from "../data/projects";
               </h4>
               <div class="grid grid-cols-3 gap-3 sm:gap-4">
                 {project.metrics.map((metric) => (
-                  <div class="kpi-card p-3 sm:p-4 text-center rounded-2xl border" style="background: var(--bg-surface); border-color: var(--border);">
+                  <div class="kpi-card p-3 sm:p-4 text-center rounded-2xl">
                     <span class="text-lg sm:text-2xl font-extrabold font-heading block" style="color: var(--accent);">
                       {metric.value}
                     </span>
@@ -258,29 +271,6 @@ import { projects } from "../data/projects";
                 ))}
               </div>
             </div>
-          </div>
-
-          <!-- Modal Footer with External Links -->
-          <div class="p-4 sm:p-5 border-t flex flex-wrap items-center justify-between gap-3 shrink-0" style="background: var(--bg-surface); border-color: var(--border);">
-            <div class="flex flex-wrap items-center gap-2.5">
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn-primary text-xs sm:text-sm py-2 px-4 shadow-sm"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                  Open Live Tableau
-                </a>
-              )}
-            </div>
-            <button
-              type="button"
-              class="close-modal-btn btn-secondary text-xs sm:text-sm py-2 px-4 cursor-pointer"
-            >
-              Close Details
-            </button>
           </div>
         </div>
       </div>

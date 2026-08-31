@@ -1,63 +1,62 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ========== Theme Colors (Executive Analytical Precision - Clean & Professional) ========== */
+/* ========== Theme Colors (Deep Frosted Glass Optical Architecture) ========== */
 :root {
-  --bg: #F8FAFC;
-  --bg-surface: #FFFFFF;
-  --bg-surface-hover: #F1F5F9;
-  --bg-card: #FFFFFF;
-  --accent: #2563EB;
-  --accent-light: #3B82F6;
-  --accent-secondary: #1D4ED8;
-  --accent-tertiary: #475569;
-  --accent-tertiary-hover: #334155;
+  --bg: #FAFAFA;
+  --bg-surface: rgba(255, 255, 255, 0.82);
+  --bg-surface-hover: rgba(244, 244, 245, 0.95);
+  --bg-card: rgba(255, 255, 255, 0.78);
+  --accent: #09090B;
+  --accent-light: #27272A;
+  --accent-secondary: #18181B;
+  --accent-tertiary: #71717A;
+  --accent-tertiary-hover: #52525B;
 
-  --btn-primary-bg: #2563EB;
+  --btn-primary-bg: #09090B;
   --btn-primary-text: #FFFFFF;
   --btn-primary-border: transparent;
-  --btn-primary-hover-bg: #1D4ED8;
+  --btn-primary-hover-bg: #27272A;
   --btn-primary-hover-text: #FFFFFF;
-  --btn-primary-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
-  --btn-primary-hover-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  --btn-primary-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --btn-primary-hover-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 
-  --text: #0F172A;
-  --text-muted: #475569;
-  --border: #E2E8F0;
-  --border-subtle: #F1F5F9;
-  --shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 2px 6px rgba(15, 23, 42, 0.02);
-  --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.06), 0 2px 4px rgba(15, 23, 42, 0.02);
-  --shadow-lg: 0 10px 25px -4px rgba(15, 23, 42, 0.08), 0 4px 8px rgba(15, 23, 42, 0.03);
+  --text: #09090B;
+  --text-muted: #71717A;
+  --border: rgba(0, 0, 0, 0.09);
+  --border-subtle: rgba(0, 0, 0, 0.05);
+  --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 10px 30px -4px rgba(0, 0, 0, 0.08), 0 4px 10px -2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 20px 40px -4px rgba(0, 0, 0, 0.12), 0 8px 16px -2px rgba(0, 0, 0, 0.06);
 }
 
 .dark {
-  --bg: #0B0F17;
-  --bg-surface: #131926;
-  --bg-surface-hover: #1A2234;
-  --bg-card: #131926;
-  --accent: #3B82F6;
-  --accent-light: #60A5FA;
-  --accent-secondary: #2563EB;
-  --accent-tertiary: #94A3B8;
-  --accent-tertiary-hover: #CBD5E1;
+  --bg: #09090B;
+  --bg-surface: rgba(18, 18, 21, 0.82);
+  --bg-surface-hover: rgba(28, 28, 32, 0.95);
+  --bg-card: rgba(18, 18, 21, 0.78);
+  --accent: #FAFAFA;
+  --accent-light: #F4F4F5;
+  --accent-secondary: #E4E4E7;
+  --accent-tertiary: #A1A1AA;
+  --accent-tertiary-hover: #D4D4D8;
 
-  --btn-primary-bg: #2563EB;
-  --btn-primary-text: #FFFFFF;
+  --btn-primary-bg: #FAFAFA;
+  --btn-primary-text: #09090B;
   --btn-primary-border: transparent;
-  --btn-primary-hover-bg: #1D4ED8;
-  --btn-primary-hover-text: #FFFFFF;
-  --btn-primary-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-  --btn-primary-hover-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  --btn-primary-hover-bg: #E4E4E7;
+  --btn-primary-hover-text: #09090B;
+  --btn-primary-shadow: 0 2px 8px rgba(255, 255, 255, 0.12);
+  --btn-primary-hover-shadow: 0 4px 14px rgba(255, 255, 255, 0.22);
 
-  --text: #F8FAFC;
-  --text-muted: #94A3B8;
-  --border: #1E293B;
-  --border-subtle: #162030;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.25);
-  --shadow-lg: 0 10px 25px -4px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.3);
+  --text: #FAFAFA;
+  --text-muted: #A1A1AA;
+  --border: rgba(255, 255, 255, 0.12);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 10px 30px -4px rgba(0, 0, 0, 0.6), 0 4px 10px -2px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 20px 45px -4px rgba(0, 0, 0, 0.75), 0 8px 18px -2px rgba(0, 0, 0, 0.45);
 }
 
 /* ========== Tailwind Theme Tokens ========== */
@@ -85,10 +84,10 @@ html {
 body {
   background-color: var(--bg);
   color: var(--text);
-  transition: background-color 0.2s ease, color 0.2s ease;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  transition: background-color 0.8s cubic-bezier(0.22, 1, 0.36, 1), color 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -100,10 +99,39 @@ h1, h2, h3, h4, h5, h6 {
   font-variant-numeric: tabular-nums;
 }
 
+/* ========== Accessible High-Contrast Focus Indicator ========== */
+:focus-visible {
+  outline: 2px solid var(--text) !important;
+  outline-offset: 3px !important;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--text) !important;
+  outline-offset: 3px !important;
+}
+
+/* ========== Circular Theme View Transition ========== */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 99999;
+}
+
 /* ========== Selection ========== */
 ::selection {
-  background-color: var(--accent);
-  color: #FFFFFF;
+  background-color: var(--text);
+  color: var(--bg);
 }
 
 /* ========== Scrollbar ========== */
@@ -121,7 +149,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+  background: var(--text-muted);
 }
 
 /* ========== Scroll Reveal Animations ========== */
@@ -195,10 +223,9 @@ h1, h2, h3, h4, h5, h6 {
   height: 0.85em;
   margin-left: 5px;
   vertical-align: -0.04em;
-  background-color: var(--accent);
+  background-color: var(--text);
   border-radius: 2px;
   animation: typewriterCursorBlink 0.9s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 60%, transparent);
 }
 
 @keyframes typewriterCursorBlink {
@@ -213,40 +240,9 @@ h1, h2, h3, h4, h5, h6 {
 .section-line {
   width: 3.5rem;
   height: 2.5px;
-  background: var(--accent);
+  background: var(--text);
   border-radius: 9999px;
   margin-bottom: 1.75rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.section-line::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-  animation: lineGlint 4s ease-in-out infinite;
-}
-
-@keyframes lineGlint {
-  0% {
-    left: -100%;
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  40% {
-    left: 150%;
-    opacity: 0;
-  }
-  100% {
-    left: 150%;
-    opacity: 0;
-  }
 }
 
 .section-eyebrow {
@@ -257,7 +253,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--text-muted);
   margin-bottom: 0.5rem;
 }
 
@@ -267,27 +263,51 @@ h1, h2, h3, h4, h5, h6 {
   width: 1rem;
   height: 2px;
   border-radius: 9999px;
-  background: var(--accent);
+  background: var(--text);
 }
 
-/* ========== KPI Stat Card (Clean & Solid) ========== */
+/* ========== Universal Heavy Frosted Glass Blur (Targeted High-Performance Selectors) ========== */
+.card,
+.kpi-card,
+.btn-secondary,
+.badge-slate,
+.profile-frame,
+.navbar-container,
+.glass-panel {
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+}
+
+/* ========== KPI Stat Card (Matching Secondary Button Surface & Aesthetic) ========== */
 .kpi-card {
   position: relative;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 0.875rem;
-  padding: 1rem 0.85rem;
+  border-radius: 1rem;
+  padding: 1.1rem 0.95rem;
   box-shadow: var(--shadow);
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.kpi-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent 0%, var(--border) 50%, transparent 100%);
+  pointer-events: none;
 }
 
 .kpi-card:hover {
   transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  border-color: var(--text);
   box-shadow: var(--shadow-md);
 }
 
-/* ========== Profile Photo Frame (Looping Glass Shimmer) ========== */
+/* ========== Profile Photo Frame (Solid Architectural Edge) ========== */
 .profile-frame {
   position: relative;
   padding: 0.5rem;
@@ -298,46 +318,7 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-.profile-frame::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.02) 20%,
-    rgba(255, 255, 255, 0.3) 50%,
-    rgba(255, 255, 255, 0.02) 80%,
-    transparent 100%
-  );
-  transform: skewX(-25deg);
-  pointer-events: none;
-  z-index: 10;
-  animation: glassShimmerSweep 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-@keyframes glassShimmerSweep {
-  0% {
-    left: -150%;
-    opacity: 0;
-  }
-  12% {
-    opacity: 1;
-  }
-  35% {
-    left: 200%;
-    opacity: 0.9;
-  }
-  36%, 100% {
-    left: 200%;
-    opacity: 0;
-  }
-}
-
-/* ========== Cards (Solid Clean) ========== */
+/* ========== Cards (Solid Clean Monochrome) ========== */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -354,16 +335,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card:hover {
-  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+  border-color: var(--text);
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
 
-/* ========== Buttons (Clean Solid) ========== */
+/* ========== Buttons (Solid Monochrome Tactile) ========== */
 .btn-primary {
   background: var(--btn-primary-bg) !important;
-  color: #FFFFFF !important;
-  border: none;
+  color: var(--btn-primary-text) !important;
+  border: 1px solid var(--btn-primary-border);
   font-weight: 600;
   padding: 0.75rem 1.4rem;
   border-radius: 9999px;
@@ -379,8 +360,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary svg {
-  color: #FFFFFF !important;
-  stroke: #FFFFFF !important;
+  color: inherit !important;
+  stroke: currentColor !important;
 }
 
 @media (min-width: 640px) {
@@ -391,7 +372,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-primary:hover {
   background: var(--btn-primary-hover-bg) !important;
-  color: #FFFFFF !important;
+  color: var(--btn-primary-hover-text) !important;
   transform: translateY(-2px);
   box-shadow: var(--btn-primary-hover-shadow);
 }
@@ -413,6 +394,12 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.5rem;
   touch-action: manipulation;
   box-shadow: var(--shadow);
+  text-decoration: none;
+}
+
+.btn-secondary svg {
+  color: inherit !important;
+  stroke: currentColor !important;
 }
 
 @media (min-width: 640px) {
@@ -422,8 +409,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-secondary:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--text);
+  color: var(--text);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -432,7 +419,11 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(0) scale(0.98);
 }
 
-/* ========== Badges (Solid & Subdued) ========== */
+.btn-secondary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ========== Badges (Solid & Subdued Monochrome) ========== */
 .badge-slate {
   display: inline-flex;
   align-items: center;
@@ -448,6 +439,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .badge-slate:hover {
-  border-color: var(--accent);
+  border-color: var(--text);
   color: var(--text);
 }

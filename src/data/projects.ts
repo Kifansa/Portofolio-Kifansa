@@ -32,7 +32,7 @@ export const projects: Project[] = [
     id: "automotive-ev-bi",
     title: "Indonesia Automotive Sales & EV Adoption Intelligence System",
     category: "Strategic Business Intelligence & Market Analytics",
-    badge: "Flagship BI Project",
+    badge: "Business Intelligence",
     summary:
       "Enterprise multi-brand automotive sales intelligence system analyzing 100,000+ transaction records to track EV adoption velocity, buyer demographics, credit financing reliance, and regional dealership performance.",
     problem:

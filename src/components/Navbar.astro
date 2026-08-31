@@ -23,18 +23,18 @@ const navLinks = [
         href="#"
         class="flex items-center gap-2.5 group"
       >
-        <div class="relative w-8 h-8 rounded-lg overflow-hidden p-0.5 border border-sky-500/20 bg-white shadow-sm transition-transform duration-200 group-hover:scale-110">
+        <div class="relative w-8 h-8 flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-105">
           <img
-            src="/images/logo.png"
+            src="/images/logo.webp"
             alt="Kifansa Logo"
-            class="w-full h-full object-contain rounded-md"
+            class="w-full h-full object-contain"
           />
         </div>
         <span
           class="font-heading text-base sm:text-lg font-bold tracking-tight transition-colors duration-200"
           style="color: var(--text);"
         >
-          kifansa
+          Kifansa
         </span>
       </a>
 
@@ -110,20 +110,15 @@ const navLinks = [
 
   .nav-link:hover,
   .mobile-nav-link:hover {
-    color: var(--accent) !important;
-    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    color: var(--text) !important;
+    background: var(--bg-surface-hover);
   }
 
   .nav-link.active {
-    color: var(--accent) !important;
-    background: color-mix(in srgb, var(--accent) 10%, var(--bg-surface)) !important;
-    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
-  }
-
-  .dark .nav-link.active {
-    color: var(--accent) !important;
-    background: color-mix(in srgb, var(--accent) 12%, var(--bg-surface)) !important;
-    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+    color: var(--text) !important;
+    background: var(--bg-surface) !important;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
   }
 </style>
 

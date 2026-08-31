@@ -9,20 +9,23 @@ import Certifications from "../components/Certifications.astro";
 import Projects from "../components/Projects.astro";
 import Experience from "../components/Experience.astro";
 import Contact from "../components/Contact.astro";
-import Footer from "../components/Footer.astro";
+import AnalyticalGridBackground from "../components/AnalyticalGridBackground.astro";
 ---
 
 <Layout>
   <Navbar />
-  <main>
+  <main class="relative">
     <Hero />
-    <About />
-    <Education />
-    <Skills />
-    <Certifications />
-    <Projects />
-    <Experience />
-    <Contact />
+    <!-- Ambient Starscape & Telemetry Crosshairs for sections below Hero -->
+    <div class="relative overflow-hidden">
+      <AnalyticalGridBackground />
+      <About />
+      <Education />
+      <Skills />
+      <Certifications />
+      <Projects />
+      <Experience />
+      <Contact />
+    </div>
   </main>
-  <Footer />
 </Layout>
