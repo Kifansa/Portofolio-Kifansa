@@ -4,18 +4,21 @@ export interface SkillItem {
 }
 
 export interface SkillCategory {
+  id: string;
   name: string;
-  icon: string;
+  subtitle: string;
+  icon: "code" | "chart" | "database" | "briefcase";
   skills: SkillItem[];
 }
 
 export const skillCategories: SkillCategory[] = [
   {
-    name: "Data Analysis & ML",
-    icon: "database",
+    id: "data-science",
+    name: "Data Science & Machine Learning",
+    subtitle: "Algorithmic modeling, exploratory data analysis & automated pipelines",
+    icon: "code",
     skills: [
       { name: "Python", icon: "python" },
-      { name: "SQL (Postgres/MySQL)", icon: "sql" },
       { name: "Pandas", icon: "pandas" },
       { name: "NumPy", icon: "numpy" },
       { name: "Scikit-Learn", icon: "scikit" },
@@ -25,38 +28,44 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    name: "BI & Visualization",
+    id: "bi-visualization",
+    name: "Business Intelligence & Visualization",
+    subtitle: "Enterprise dashboards, interactive KPI tracking & executive reporting",
     icon: "chart",
     skills: [
-      { name: "Tableau", icon: "tableau" },
+      { name: "Tableau Public", icon: "tableau" },
       { name: "Microsoft Power BI", icon: "powerbi" },
-      { name: "Data Studio", icon: "datastudio" },
+      { name: "Google Looker Studio", icon: "datastudio" },
       { name: "Microsoft Excel", icon: "excel" },
       { name: "Interactive Dashboards", icon: "dashboard" },
       { name: "Executive Storytelling", icon: "storytelling" },
     ],
   },
   {
-    name: "Programming & Tools",
-    icon: "code",
+    id: "databases-engineering",
+    name: "Databases & Analytics Engineering",
+    subtitle: "Relational data structuring, query optimization & version control",
+    icon: "database",
     skills: [
-      { name: "Python", icon: "python" },
-      { name: "SQL Querying", icon: "sql" },
+      { name: "SQL (Postgres & MySQL)", icon: "sql" },
+      { name: "Database Architecture", icon: "dbmodel" },
+      { name: "R Programming", icon: "r" },
       { name: "Java", icon: "java" },
-      { name: "R Language", icon: "r" },
       { name: "Git & GitHub", icon: "github" },
-      { name: "HTML & CSS", icon: "htmlcss" },
+      { name: "HTML5 & CSS3", icon: "htmlcss" },
     ],
   },
   {
-    name: "Business & Strategy",
+    id: "strategy-impact",
+    name: "Analytics Strategy & Business Impact",
+    subtitle: "Translating data insights into commercial ROI & optimized workflows",
     icon: "briefcase",
     skills: [
-      { name: "Business Intelligence", icon: "bi" },
       { name: "A/B Testing & Metrics", icon: "abtest" },
+      { name: "KPI & Metrics Frameworks", icon: "kpi" },
       { name: "Process Optimization", icon: "process" },
-      { name: "Presentations", icon: "presentation" },
-      { name: "Cross-Functional Agile", icon: "agile" },
+      { name: "Stakeholder Presentations", icon: "presentation" },
+      { name: "Agile Analytics Delivery", icon: "agile" },
     ],
   },
 ];

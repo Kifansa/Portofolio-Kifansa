@@ -35,7 +35,7 @@ import { certifications } from "../data/certifications";
                   />
                   {cert.courses && (
                     <span
-                      class="absolute top-3.5 right-3.5 px-3 py-1 text-xs font-bold rounded-full shadow-lg border border-white/20 bg-slate-950/85 text-white backdrop-blur-md"
+                      class="absolute top-3.5 right-3.5 px-3 py-1 text-xs font-semibold rounded-full border border-slate-700/80 bg-slate-950/90 text-white shadow-sm"
                     >
                       {cert.courses} Specialized Courses
                     </span>
@@ -65,11 +65,10 @@ import { certifications } from "../data/certifications";
                   href={cert.verifyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl text-xs font-bold transition-all duration-200 shadow-sm"
-                  style="color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--bg-card)); border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));"
+                  class="btn-secondary w-full justify-center text-xs sm:text-sm py-2.5 px-4 font-semibold shadow-sm"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                  Verify Official Certificate
+                  Verify Certificate
                 </a>
               </div>
             )}

@@ -244,9 +244,71 @@ const schemaJson = {
           });
         }
 
+        // Typewriter Animation for Section Headings with Blinking Caret
+        const typewriterObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const el = entry.target;
+              const fullText = el.getAttribute("data-typewriter-text");
+              if (!fullText) return;
+
+              if (entry.isIntersecting) {
+                if (el.dataset.isTyping === "true") return;
+
+                el.dataset.isTyping = "true";
+                el.innerHTML = "";
+
+                const textSpan = document.createElement("span");
+                textSpan.className = "typewriter-text";
+
+                const cursorSpan = document.createElement("span");
+                cursorSpan.className = "typewriter-cursor";
+                cursorSpan.setAttribute("aria-hidden", "true");
+
+                el.appendChild(textSpan);
+                el.appendChild(cursorSpan);
+
+                let charIndex = 0;
+                const typingSpeed = fullText.length > 50 ? 22 : 36;
+
+                function typeChar() {
+                  if (charIndex < fullText.length) {
+                    textSpan.textContent = fullText.slice(0, charIndex + 1);
+                    charIndex++;
+                    el.typewriterTimer = setTimeout(typeChar, typingSpeed);
+                  } else {
+                    el.dataset.isTyping = "false";
+                    el.dataset.isTyped = "true";
+                  }
+                }
+
+                el.typewriterTimer = setTimeout(typeChar, 80);
+              } else {
+                // When scrolled out of view, clear any active timer and reset
+                if (el.typewriterTimer) clearTimeout(el.typewriterTimer);
+                el.dataset.isTyping = "false";
+                el.dataset.isTyped = "false";
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -30px 0px" }
+        );
+
+        function observeTypewriters() {
+          document.querySelectorAll(".section-heading").forEach((el) => {
+            if (!el.getAttribute("data-typewriter-text")) {
+              const cleanText = el.textContent.trim().replace(/\s+/g, " ");
+              el.setAttribute("data-typewriter-text", cleanText);
+              el.setAttribute("aria-label", cleanText);
+            }
+            typewriterObserver.observe(el);
+          });
+        }
+
         function initObservers() {
           observeElements();
           observeCounters();
+          observeTypewriters();
         }
 
         if (document.readyState === "loading") {

@@ -63,8 +63,8 @@ const contactLinks = [
               data-copyable={link.copyable ? link.value : undefined}
             >
               <div
-                class="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-2xl shrink-0 shadow-sm"
-                style="background: color-mix(in srgb, var(--accent) 10%, var(--bg-surface)); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));"
+                class="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-2xl shrink-0 shadow-xs transition-all duration-200 group-hover:border-[var(--accent)]"
+                style="background: var(--bg-surface); color: var(--text); border: 1px solid var(--border);"
               >
                 <Fragment set:html={link.icon} />
               </div>
