@@ -1,10 +1,16 @@
 ---
 import { certifications } from "../data/certifications";
+
+const allCount = certifications.length;
+const bnspCount = certifications.filter((c) => c.category === "bnsp").length;
+const googleCount = certifications.filter((c) => c.category === "google").length;
+const digitalentCount = certifications.filter((c) => c.category === "digitalent").length;
 ---
 
 <section id="certifications" class="py-16 sm:py-20 lg:py-28 relative">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-10 sm:mb-14">
+    <!-- Header Section -->
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-8 sm:mb-10">
       <div class="reveal-left">
         <p class="section-eyebrow">Professional Credentials</p>
         <h2 class="section-heading" style="color: var(--text);">
@@ -13,82 +19,200 @@ import { certifications } from "../data/certifications";
         <div class="section-line"></div>
       </div>
       <p class="reveal-right max-w-md text-sm sm:text-base lg:text-right lg:pb-2" style="color: var(--text-muted);">
-        Verified professional credentials in Data Analytics &amp; AI across national standards and global technology leaders.
+        Verified professional credentials in Data Analytics, Engineering &amp; AI across national competency standards and global technology authorities.
       </p>
     </div>
 
-    <!-- 3-Column Vertical Grid (Row 1: 3 cards, Row 2: 1 card) -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+    <!-- Top-Positioned Pagination & Track Filter Bar -->
+    <div
+      class="reveal reveal-delay-1 mb-8 p-3 sm:p-4 rounded-2xl border flex flex-col md:flex-row md:items-center md:justify-between gap-4 shadow-sm"
+      style="background: var(--bg-card); border-color: var(--border);"
+    >
+      <!-- Category Filter Tabs -->
+      <div
+        class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 md:pb-0"
+        id="cert-filter-group"
+        role="tablist"
+        aria-label="Filter certificates by authority"
+      >
+        <button
+          type="button"
+          class="cert-filter-btn active px-3.5 py-1.5 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 shrink-0"
+          data-filter="all"
+          role="tab"
+          aria-selected="true"
+        >
+          All Credentials
+          <span class="px-1.5 py-0.5 rounded-full text-[10px] font-extrabold filter-count-badge">{allCount}</span>
+        </button>
+        <button
+          type="button"
+          class="cert-filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 shrink-0"
+          data-filter="bnsp"
+          role="tab"
+          aria-selected="false"
+        >
+          BNSP
+          <span class="px-1.5 py-0.5 rounded-full text-[10px] font-extrabold filter-count-badge">{bnspCount}</span>
+        </button>
+        <button
+          type="button"
+          class="cert-filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 shrink-0"
+          data-filter="google"
+          role="tab"
+          aria-selected="false"
+        >
+          Google
+          <span class="px-1.5 py-0.5 rounded-full text-[10px] font-extrabold filter-count-badge">{googleCount}</span>
+        </button>
+        <button
+          type="button"
+          class="cert-filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 shrink-0"
+          data-filter="digitalent"
+          role="tab"
+          aria-selected="false"
+        >
+          Komdigi Digitalent
+          <span class="px-1.5 py-0.5 rounded-full text-[10px] font-extrabold filter-count-badge">{digitalentCount}</span>
+        </button>
+      </div>
+
+      <!-- Pagination Controls & Live Item Counter -->
+      <div class="flex items-center justify-between md:justify-end gap-3 sm:gap-5 shrink-0">
+        <span id="cert-counter-label" class="text-xs font-semibold tabular-nums" style="color: var(--text-muted);">
+          Showing 1–6 of {allCount}
+        </span>
+
+        <div class="flex items-center gap-2 sm:gap-2.5">
+          <!-- Previous Page Button -->
+          <button
+            type="button"
+            id="cert-prev-btn"
+            class="p-2 rounded-xl border transition-all duration-200 cursor-pointer flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed hover:scale-105 active:scale-95"
+            style="background: var(--bg-surface); border-color: var(--border); color: var(--text);"
+            aria-label="Previous page"
+            disabled
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+
+          <!-- Dynamic Page Numbers (Pure Typographic, No Box, Comfortable Spacing) -->
+          <div id="cert-page-numbers" class="flex items-center gap-3 sm:gap-4 px-2"></div>
+
+          <!-- Next Page Button -->
+          <button
+            type="button"
+            id="cert-next-btn"
+            class="p-2 rounded-xl border transition-all duration-200 cursor-pointer flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed hover:scale-105 active:scale-95"
+            style="background: var(--bg-surface); border-color: var(--border); color: var(--text);"
+            aria-label="Next page"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-Column Responsive Grid (6 cards per page) -->
+    <div id="certifications-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
       {
         certifications.map((cert, idx) => (
-          <div class={`reveal reveal-delay-${Math.min(idx + 1, 6)}`}>
+          <div
+            class="cert-item transition-all duration-300"
+            data-category={cert.category}
+            data-index={idx}
+            data-title={cert.name}
+            data-issuer={cert.issuer}
+            data-image={cert.image}
+            data-date={cert.date}
+            data-credential-id={cert.credentialId || ""}
+            data-verify-url={cert.verifyUrl}
+          >
             <div
-              class="card rounded-3xl group overflow-hidden p-0 flex flex-col justify-between h-full transition-all duration-300 hover:scale-[1.01] shadow-xs"
+              class="card rounded-3xl group overflow-hidden p-0 flex flex-col justify-between h-full transition-all duration-300 hover:scale-[1.015] shadow-xs"
               style="border-color: color-mix(in srgb, var(--border) 60%, transparent);"
             >
               <div>
-                {cert.image && (
-                  <div class="relative overflow-hidden aspect-[16/10] bg-slate-950/40">
-                    <img
-                      src={cert.image}
-                      alt={`${cert.name} certificate`}
-                      class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
+                <!-- Certificate Preview Thumbnail with Click-to-Inspect -->
+                <div
+                  class="cert-inspect-trigger relative overflow-hidden aspect-[16/10] bg-slate-950/40 cursor-pointer"
+                  role="button"
+                  tabindex="0"
+                  aria-label={`Inspect ${cert.name} certificate in full resolution`}
+                >
+                  <img
+                    src={cert.image}
+                    alt={`${cert.name} certificate`}
+                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+
+                  <!-- Hover Inspection Overlay -->
+                  <div class="absolute inset-0 bg-slate-950/45 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-1.5 text-white text-xs font-bold backdrop-blur-[2px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                    <span>Click to Inspect</span>
+                  </div>
+
+                  <!-- Badge Overlays -->
+                  <div class="absolute top-3.5 right-3.5 flex flex-col items-end gap-1.5 pointer-events-none">
                     {cert.courses && (
-                      <span
-                        class="absolute top-3.5 right-3.5 px-3 py-1 text-xs font-semibold rounded-full border border-slate-700/80 bg-slate-950/90 text-white shadow-sm"
-                      >
+                      <span class="px-2.5 py-0.5 text-[11px] font-semibold rounded-full border border-slate-700/80 bg-slate-950/90 text-white shadow-sm">
                         {cert.courses} Specialized Courses
                       </span>
                     )}
-                    {cert.credentialId && (
-                      <span
-                        class="absolute top-3.5 right-3.5 px-3 py-1 text-xs font-semibold rounded-full border border-slate-700/80 bg-slate-950/90 text-white shadow-sm"
-                      >
+                    {cert.hours && (
+                      <span class="px-2.5 py-0.5 text-[11px] font-semibold rounded-full border border-slate-700/80 bg-slate-950/90 text-white shadow-sm">
+                        {cert.hours} Hours Training
+                      </span>
+                    )}
+                    {cert.credentialId && !cert.hours && (
+                      <span class="px-2.5 py-0.5 text-[11px] font-semibold rounded-full border border-slate-700/80 bg-slate-950/90 text-white shadow-sm">
                         BNSP Certified
                       </span>
                     )}
                   </div>
-                )}
 
-                <div class="p-5 sm:p-6">
-                  <div class="mb-2">
-                    <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--accent);">
+                  <!-- Track Badge (Bottom Left) -->
+                  <div class="absolute bottom-2.5 left-2.5 pointer-events-none">
+                    <span class="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-md bg-slate-950/85 text-white border border-slate-700/60 shadow-xs">
+                      {cert.track}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Card Body -->
+                <div class="p-5 sm:p-6 pb-4">
+                  <div class="mb-2 flex items-center justify-between gap-2">
+                    <span class="text-[11px] font-bold uppercase tracking-wider truncate" style="color: var(--accent);">
                       {cert.issuer}
                     </span>
                   </div>
                   <h3 class="font-heading font-bold text-base sm:text-lg mb-2 leading-snug" style="color: var(--text);">
                     {cert.name}
                   </h3>
-                  <p class="text-xs sm:text-sm font-medium mb-4" style="color: var(--text-muted);">
+                  <p class="text-xs sm:text-sm font-medium" style="color: var(--text-muted);">
                     Completed: {cert.date}
                   </p>
                 </div>
               </div>
 
-              <div class="p-6 pt-0">
-                {cert.verifyUrl ? (
-                  <a
-                    href={cert.verifyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn-secondary w-full justify-center text-xs sm:text-sm py-2.5 px-4 font-semibold shadow-sm"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                    Verify Certificate
-                  </a>
-                ) : cert.image ? (
-                  <a
-                    href={cert.image}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn-secondary w-full justify-center text-xs sm:text-sm py-2.5 px-4 font-semibold shadow-sm"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                    View Credential
-                  </a>
-                ) : null}
+              <!-- Card Action Button Row: Single Direct Verify Button -->
+              <div class="p-5 sm:p-6 pt-0 space-y-2">
+                <a
+                  href={cert.verifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-primary w-full justify-center text-xs sm:text-sm py-2.5 px-4 font-semibold shadow-xs"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  Verify Certificate
+                </a>
+
+                {cert.credentialId && (
+                  <p class="text-[10px] font-mono truncate text-center pt-0.5" style="color: var(--text-muted);" title={`Credential ID: ${cert.credentialId}`}>
+                    ID: {cert.credentialId}
+                  </p>
+                )}
               </div>
             </div>
           </div>
@@ -96,4 +220,364 @@ import { certifications } from "../data/certifications";
       }
     </div>
   </div>
+
+  <!-- Dedicated Certificate High-Resolution Lightbox Modal (Top Level z-[60]) -->
+  <div
+    id="cert-lightbox-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="cert-lightbox-title"
+    class="fixed inset-0 z-[60] bg-slate-950/85 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6 transition-opacity duration-300"
+  >
+    <div
+      class="relative max-w-5xl w-full rounded-3xl border overflow-hidden flex flex-col max-h-[94vh] shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+      style="background: var(--bg-card); border-color: var(--border);"
+    >
+      <!-- Lightbox Header -->
+      <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b shrink-0" style="border-color: var(--border);">
+        <div class="space-y-0.5 pr-4 min-w-0">
+          <span id="cert-lightbox-issuer" class="text-[11px] font-bold uppercase tracking-wider block truncate" style="color: var(--accent);">
+            Issuer
+          </span>
+          <h4 id="cert-lightbox-title" class="font-heading font-bold text-sm sm:text-base md:text-lg truncate" style="color: var(--text);">
+            Certificate Title
+          </h4>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <a
+            id="cert-lightbox-verify-btn"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary text-xs py-1.5 px-3.5 inline-flex items-center gap-1.5 font-semibold"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Verify Online
+          </a>
+          <button
+            id="cert-lightbox-close-btn"
+            type="button"
+            class="p-2 rounded-xl border border-red-500/30 bg-red-500/10 text-red-500 dark:text-red-400 hover:bg-red-500/20 hover:border-red-500/50 transition-colors cursor-pointer shadow-sm hover:scale-105"
+            aria-label="Close certificate inspection"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Certificate Image Container -->
+      <div class="p-3 sm:p-6 overflow-y-auto flex-1 flex flex-col items-center justify-center bg-slate-950/20">
+        <img
+          id="cert-lightbox-img"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E"
+          alt="Full Resolution Certificate"
+          class="max-w-full max-h-[76vh] object-contain rounded-xl shadow-lg border"
+          style="border-color: var(--border);"
+        />
+      </div>
+
+      <!-- Footer Info Bar -->
+      <div class="px-5 py-3 border-t text-xs flex flex-wrap items-center justify-between gap-2 shrink-0" style="background: var(--bg-surface); border-color: var(--border); color: var(--text-muted);">
+        <span id="cert-lightbox-credential-id" class="font-mono text-[11px] truncate"></span>
+        <span id="cert-lightbox-date" class="font-medium text-[11px]"></span>
+      </div>
+    </div>
+  </div>
 </section>
+
+<style is:global>
+  .cert-filter-btn.active {
+    background: var(--btn-primary-bg) !important;
+    color: var(--btn-primary-text) !important;
+    border-color: transparent !important;
+    box-shadow: var(--btn-primary-shadow);
+  }
+
+  .cert-filter-btn.active .filter-count-badge {
+    background: rgba(255, 255, 255, 0.2);
+    color: inherit;
+  }
+
+  .dark .cert-filter-btn.active .filter-count-badge {
+    background: rgba(0, 0, 0, 0.25);
+    color: inherit;
+  }
+
+  .cert-filter-btn:not(.active) {
+    background: var(--bg-surface);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+
+  .cert-filter-btn:not(.active) .filter-count-badge {
+    background: var(--bg-card);
+    color: var(--text);
+  }
+
+  .cert-filter-btn:not(.active):hover {
+    border-color: var(--text);
+    color: var(--text);
+    background: var(--bg-surface-hover);
+  }
+
+  .cert-page-btn {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    padding: 0.25rem 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    user-select: none;
+    line-height: 1;
+    color: var(--text-muted) !important;
+  }
+
+  .cert-page-btn:hover {
+    color: var(--text) !important;
+    transform: translateY(-1px);
+  }
+
+  .cert-page-btn.active {
+    color: var(--text) !important;
+    font-weight: 800 !important;
+    font-size: 0.9375rem !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const ITEMS_PER_PAGE = 6;
+    const certItems = Array.from(document.querySelectorAll(".cert-item"));
+    const filterBtns = document.querySelectorAll(".cert-filter-btn");
+    const prevBtn = document.getElementById("cert-prev-btn");
+    const nextBtn = document.getElementById("cert-next-btn");
+    const pageNumbersContainer = document.getElementById("cert-page-numbers");
+    const counterLabel = document.getElementById("cert-counter-label");
+
+    let currentFilter = "all";
+    let currentPage = 1;
+
+    function getFilteredItems() {
+      if (currentFilter === "all") return certItems;
+      return certItems.filter((item) => item.getAttribute("data-category") === currentFilter);
+    }
+
+    function renderPagination() {
+      const filtered = getFilteredItems();
+      const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+
+      if (currentPage > totalPages) {
+        currentPage = totalPages;
+      }
+
+      // Hide all items first
+      certItems.forEach((item) => {
+        item.classList.add("hidden");
+      });
+
+      // Show items for current page
+      const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+      const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, filtered.length);
+      const pageItems = filtered.slice(startIndex, endIndex);
+
+      pageItems.forEach((item) => {
+        item.classList.remove("hidden");
+      });
+
+      // Update counter label
+      if (filtered.length === 0) {
+        counterLabel.textContent = "No credentials found";
+      } else {
+        counterLabel.textContent = `Showing ${startIndex + 1}–${endIndex} of ${filtered.length}`;
+      }
+
+      // Update Prev / Next buttons
+      prevBtn.disabled = currentPage <= 1;
+      nextBtn.disabled = currentPage >= totalPages;
+
+      // Render page number pill buttons
+      pageNumbersContainer.innerHTML = "";
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `cert-page-btn ${i === currentPage ? "active" : ""}`;
+        btn.textContent = i.toString();
+        btn.setAttribute("aria-label", `Page ${i}`);
+        if (i === currentPage) {
+          btn.setAttribute("aria-current", "page");
+        }
+        btn.addEventListener("click", () => {
+          if (currentPage !== i) {
+            currentPage = i;
+            renderPagination();
+            scrollToCertificationsTop();
+          }
+        });
+        pageNumbersContainer.appendChild(btn);
+      }
+    }
+
+    function scrollToCertificationsTop() {
+      const section = document.getElementById("certifications");
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < -50) {
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }
+
+    // Filter Button Click Handlers
+    filterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const filterVal = btn.getAttribute("data-filter");
+        if (currentFilter !== filterVal) {
+          currentFilter = filterVal;
+          currentPage = 1;
+
+          filterBtns.forEach((b) => {
+            b.classList.remove("active");
+            b.setAttribute("aria-selected", "false");
+          });
+          btn.classList.add("active");
+          btn.setAttribute("aria-selected", "true");
+
+          renderPagination();
+        }
+      });
+    });
+
+    // Prev / Next Click Handlers
+    prevBtn?.addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderPagination();
+        scrollToCertificationsTop();
+      }
+    });
+
+    nextBtn?.addEventListener("click", () => {
+      const filtered = getFilteredItems();
+      const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderPagination();
+        scrollToCertificationsTop();
+      }
+    });
+
+    // Initial Pagination Render
+    renderPagination();
+
+    // ==========================================
+    // Lightbox Modal Logic for Image Inspection
+    // ==========================================
+    const modal = document.getElementById("cert-lightbox-modal");
+    const closeBtn = document.getElementById("cert-lightbox-close-btn");
+    const modalImg = document.getElementById("cert-lightbox-img");
+    const modalTitle = document.getElementById("cert-lightbox-title");
+    const modalIssuer = document.getElementById("cert-lightbox-issuer");
+    const modalDate = document.getElementById("cert-lightbox-date");
+    const modalCredId = document.getElementById("cert-lightbox-credential-id");
+    const modalVerifyBtn = document.getElementById("cert-lightbox-verify-btn");
+    let lastActiveTrigger = null;
+
+    function lockScroll() {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    }
+
+    function unlockScroll() {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+
+    function openCertLightbox(triggerEl) {
+      const card = triggerEl.closest(".cert-item");
+      if (!card) return;
+
+      lastActiveTrigger = triggerEl;
+      const title = card.getAttribute("data-title") || "";
+      const issuer = card.getAttribute("data-issuer") || "";
+      const img = card.getAttribute("data-image") || "";
+      const date = card.getAttribute("data-date") || "";
+      const credId = card.getAttribute("data-credential-id") || "";
+      const verifyUrl = card.getAttribute("data-verify-url") || "";
+
+      if (modalTitle) modalTitle.textContent = title;
+      if (modalIssuer) modalIssuer.textContent = issuer;
+      if (modalImg) {
+        modalImg.src = img;
+        modalImg.alt = `${title} Certificate Inspection`;
+      }
+      if (modalDate) {
+        modalDate.textContent = date ? `Completed: ${date}` : "";
+      }
+      if (modalCredId) {
+        modalCredId.textContent = credId ? `Credential ID: ${credId}` : "";
+      }
+
+      if (modalVerifyBtn) {
+        if (verifyUrl) {
+          modalVerifyBtn.href = verifyUrl;
+          modalVerifyBtn.classList.remove("hidden");
+          modalVerifyBtn.classList.add("inline-flex");
+        } else {
+          modalVerifyBtn.classList.add("hidden");
+          modalVerifyBtn.classList.remove("inline-flex");
+        }
+      }
+
+      if (modal) {
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        lockScroll();
+        closeBtn?.focus();
+      }
+    }
+
+    function closeCertLightbox() {
+      if (!modal) return;
+      modal.classList.remove("flex");
+      modal.classList.add("hidden");
+      unlockScroll();
+
+      if (lastActiveTrigger && typeof lastActiveTrigger.focus === "function") {
+        lastActiveTrigger.focus();
+      }
+    }
+
+    // Attach click and keyboard listeners to image triggers
+    document.querySelectorAll(".cert-inspect-trigger").forEach((trigger) => {
+      trigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        openCertLightbox(trigger);
+      });
+      trigger.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openCertLightbox(trigger);
+        }
+      });
+    });
+
+    closeBtn?.addEventListener("click", closeCertLightbox);
+
+    modal?.addEventListener("click", (e) => {
+      if (e.target === modal) closeCertLightbox();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal && !modal.classList.contains("hidden")) {
+        closeCertLightbox();
+      }
+    });
+  })();
+</script>
